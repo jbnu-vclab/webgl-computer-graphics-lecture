@@ -1,0 +1,69 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>WebGL 0.Setup</title>
+    <link type="text/css" href="../../resources/webgl-tutorials.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div>WebGL Setup Result</div>
+    <canvas id="c"></canvas>
+  </body>
+</html>
+<script src="../../resources/webgl-utils.js"></script>
+<script>
+"use strict";
+
+var vertexShaderSource = `#version 300 es
+layout(location=0) in vec4 a_position; 
+void main() {
+  gl_Position = a_position;
+}
+`;
+
+var fragmentShaderSource = `#version 300 es
+precision highp float;
+layout(location=0) out vec4 outColor;
+
+void main() {
+  outColor = vec4(0.0,0.0,1.0,1.0); 
+}
+`;
+
+function main() {
+  // Get A WebGL context
+  var canvas = document.querySelector("#c");
+  var gl = canvas.getContext("webgl2");
+  if (!gl) {
+    return;
+  }
+  
+  var positions = [
+    -0.5, -0.5,
+     0.0,  0.5,
+     0.5, -0.5,
+  ];
+  
+  var positionBuffer = gl.createBuffer(); 
+  gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer); 
+  gl.bufferData(gl.ARRAY_BUFFER, 
+				new Float32Array(positions), 
+				gl.STATIC_DRAW); 
+  
+  gl.enableVertexAttribArray(0); 
+
+  
+  gl.vertexAttribPointer(0, 2, gl.FLOAT,false,0, 0); 
+						
+  var program = webglUtils.createProgramFromSources(gl,	[vertexShaderSource, fragmentShaderSource]);
+  
+  gl.useProgram(program); 
+    
+  //---Draw Call---//
+  gl.drawArrays(gl.TRIANGLES, 
+				0,
+				3);
+}
+
+main();
+</script>
