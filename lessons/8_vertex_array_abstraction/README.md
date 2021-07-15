@@ -151,11 +151,11 @@
 
     위에서 정의한 사각형 정점 데이터를 그림으로 나타내보면 아래와 같습니다.
 
-    <img src="../imgs/8_va_abstraction_rect_vertices.jpg" alt="" width="512">
+    <img src="../imgs/7_buffer_abstraction_rectangle_vertices.jpg" alt="" width="512">
 
     그리고 아시다시피 위 그림은 우리의 머리속에만 있는 것이고, 실제로는 그냥 float의(정확히는 아직 float배열로 변환하지 않았으므로 그냥 숫자의) 배열일 뿐입니다. 아래 그림처럼요.
     
-    <img src="../imgs/8_va_abstraction_rect_array.jpg" width="1024">
+    <img src="../imgs/7_buffer_abstraction_rectangle_array.jpg">
 
     이 데이터를 해석하는 방법은 아래 코드를 통해 알려주게 됩니다.
 
@@ -201,7 +201,7 @@
 
     왜 이렇게 되어야하는지 아래 그림을 통해서 알아봅시다.
 
-    <img src="../imgs/8_va_abstraction_rect_array_stride_offset.jpg"  width="1024">
+    <img src="../imgs/7_buffer_abstraction_rectangle_stride_offset.jpg">
 
     보시다시피 배열에는 네 점에 대한 위치, 색상 값들이 순차적으로 나열되어 있습니다. 위치든 색상이든 다 4 byte float에 저장되어 있다고 가정하고 있습니다. 두번째 인자인 count는 몇 개씩이 해당 데이터인지 알려주는 것이므로 각각 2,4입니다. 코드에서는 인자로 넘어온 `countArray[]`값을 바로 사용하면 됩니다.
 
