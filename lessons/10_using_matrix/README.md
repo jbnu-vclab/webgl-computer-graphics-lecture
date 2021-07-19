@@ -146,7 +146,7 @@
 
 ---
 
-`http://localhost:8080/lessons/_current/contents.html`(또는 `http://localhost:8080/lessons/10. Using Matrix/contents.html`)에 접속해 보시면 파란색으로 "정사각형"이 표시되는 것을 보실 수 있습니다.
+`http://localhost:8080/lessons/_current/contents.html`(또는 `http://localhost:8080/lessons/10_using_matrix/contents.html`)에 접속해 보시면 파란색으로 "정사각형"이 표시되는 것을 보실 수 있습니다.
 
 좀 더 재미있는 작업을 하기 전에 필요한 행렬 계산 라이브러리의 사용 준비와 아주 간단한 사용 예를 알아보았습니다. uniform으로 행렬을 셰이더에 넘기는 방법을 정확하게 숙지해 두시는 것이 중요할 것으로 생각됩니다. 
 
