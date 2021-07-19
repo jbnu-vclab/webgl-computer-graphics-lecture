@@ -229,7 +229,7 @@
 
     Camera 클래스 생성자에 필요한 인자들을 넣어주어 `mainCamera` 객체를 생성합니다. 초기값을 통해 아래 그림과 같은 상황이 설정됩니다. (`yaw`=-90, `pitch`=0 각도를 통해 `front`가 (0,0,-1)이 되는것이 맞는지 확인해보세요.) (정점 위치의 Z좌표로는 값을 넘겨주지 않았기때문에 기본값인 0이 들어가있는 상태입니다.)
 
-    <imgs src="../imgs/11_input_handling_camera_setting.jpg" width="512"></imgs>
+    <img src="../imgs/11_input_handling_camera_setting.jpg" width="512"></img>
 
 9. [`main.js`] 투영행렬 정의
 
