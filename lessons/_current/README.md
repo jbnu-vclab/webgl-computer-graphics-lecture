@@ -145,7 +145,7 @@ OBJ 파일 포맷은 정점의 위치, 텍스처 좌표, 법선 등을 기록할
 
     mesh에 어떠한 정보들이 저장되어 있는지 한번 봅시다. 중요한 부분은 노란색으로 표시 해 두었습니다.
 
-    <img src="../imgs/12_model_matrix_and_load_obj.jpg" width="1024"></img>
+    <img src="../imgs/12_model_matrix_and_load_obj.JPG" width="1024"></img>
 
     `mesh.vertices`는 길이 72인 배열로, 정점의 위치 좌표들이 저장되어 있습니다. 각 정점은 x,y,z 좌표를 가지고 있으므로 사실 정점의 개수는 72/3=24개 입니다. 음, 육면체(cube)인데 왜 정점이 8개가 아니라 24개 일까요? OBJ 파일에도 8개만 있었는데요? 
 
@@ -207,7 +207,7 @@ OBJ 파일 포맷은 정점의 위치, 텍스처 좌표, 법선 등을 기록할
 
     이제 육면체가 계속해서 회전하도록 모델 행렬을 적용해보겠습니다. `drawScene()` 외부에 회전각을 저장할 `rotationAngle` 변수를 우선 0으로 초기화합니다. `drawScene()`이 호출될 때마다(화면이 새로 그려질 때마다) 회전각이 조금씩 늘어나 육면체가 회전할겁니다.
 
-    자, 만일 제 설명에 따라 코드를 직접 수정하고 계신다면 이 시점에서 페이지에 접속해 보면 육면체가 회전하지 않는 것을 보실 수 있을겁니다. 그러다 마우스를 움직이거나 키보드를 누르는 순간에만 육면체가 회전하실 겁니다.
+    자, 만일 제 설명에 따라 코드를 직접 수정하고 계신다면 이 시점에서 페이지에 접속해 보면 육면체가 회전하지 않는 것을 보실 수 있을겁니다. 그러다 마우스를 움직이거나 키보드를 누르는 순간에만 육면체가 회전하는 것이 보이실 겁니다.
 
     드로우콜을 호출해야 화면이 그려진다는 것을 명심하시면 이러한 현상은 당연해 보일겁니다. 왜냐하면 우리는 처음에 `drawScene()`을 한번 호출한 뒤에는, 키보드나 마우스 입력이 발생할 때만 화면을 그리도록 했으니까요. 육면체가 계속 돌아가도록 하려면 이렇게 하면 안됩니다. 따라서 아래와 같은 구현이 필요합니다.
 
@@ -229,13 +229,13 @@ OBJ 파일 포맷은 정점의 위치, 텍스처 좌표, 법선 등을 기록할
     
     이때, 화면을 한번 그리고 끝나는 것이 아니라 1초에 60번씩(모니터 주사율에 따라 다를 수 있음) 새로 그립니다. 그래야 움직이는 GIF도 보여줄 수 있고, 우리가 스크롤을 하면 문서의 아래쪽에 있는 컨텐츠도 보여줄 수 있습니다. 우리 눈의 잔상효과로 인해 브라우저가 화면을 새로 그리는것을 우리는 알아챌 수 없습니다. 너무 빨라서요. 이를 간단히 다이어그램으로 아래처럼 그려볼 수 있습니다.
 
-    <img src="../imgs/12_model_matrix_and_load_obj_raf1.jpg" width="512"></img>
+    <img src="../imgs/12_model_matrix_and_load_obj_raf1.JPG" width="512"></img>
 
     브라우저가 화면을 새로 그리기 직전에 어떠한 함수를 호출하게 하고 싶다면, `requestAnimationFrame()`에 인자로 콜백함수를 넘겨주면 됩니다. 여기서는 `drawScene`을 콜백함수로 사용하고 있습니다. 위 코드에서 (1)을 실행하게 되면 다음 화면을 그리기 직전에 `drawScene()`이 호출되어 WebGL도 새로운 이미지가 그려져 화면에 표시됩니다.
 
     여기서 끝나면 안되고, 계속 이미지를 갱신해야 하기 때문에 (2) 코드를 통해 `drawScene()`의 마지막에 `requestAnimationFrame()`을 다시 호출해야 합니다. 그러면 자동적으로 브라우저의 다음 화면을 그리기 직전에 증가한 `rotationAngle`값으로 계산된 이미지가 그려지고, 화면에 표시되게 됩니다. 이 과정을 다이어그램으로 나타내보면 아래와 같습니다. (그림 내의 (1),(2),(3),(4)는 위 코드의 (1),(2)와는 별개입니다. 혼동하지 마세요.)
 
-    <img src="../imgs/12_model_matrix_and_load_obj_raf2.jpg" width="512"></img>
+    <img src="../imgs/12_model_matrix_and_load_obj_raf2.JPG" width="512"></img>
 
     아주 간단하게 화면을 계속 갱신하도록 할 수 있습니다.
 
@@ -289,3 +289,4 @@ OBJ 파일 포맷은 정점의 위치, 텍스처 좌표, 법선 등을 기록할
 - [Varying의 보간(WebGL2Fundamentals)](https://webgl2fundamentals.org/webgl/lessons/ko/webgl-how-it-works.html)
 - [requestAnimationFrame을 사용한 애니메이션](https://webgl2fundamentals.org/webgl/lessons/ko/webgl-animation.html)
 - [requestAnimationFrame 명세](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame)
+- [정점 인덱스](https://webgl2fundamentals.org/webgl/lessons/ko/webgl-indexed-vertices.html)
