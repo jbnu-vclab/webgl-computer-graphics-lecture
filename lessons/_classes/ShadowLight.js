@@ -55,7 +55,7 @@ export class DirectionalLight extends Light {
     {
         //Light에 대한 Projection matrix
         this.lightProjection = mat4.create();
-        mat4.ortho(this.lightProjection, -10.0, 10.0, -10.0, 10.0, 0.1, this.farPlane);
+        mat4.ortho(this.lightProjection, -2.0, 2.0, -2.0, 2.0, 0.1, this.farPlane);
 
         //light에 대한 View matrix
         //directional light는 원래 위치가 정해져 있지 않지만,
