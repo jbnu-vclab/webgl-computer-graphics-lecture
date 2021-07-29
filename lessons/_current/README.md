@@ -329,7 +329,7 @@
 
 - Light far plane 슬라이더의 값을 올리면 주전자가 검게 변하고, 값을 내리면 주전자가 밝아지다가 보이지 않게 됩니다. 모든 변환을 거치고 나면 Z-buffer에 저장되는 깊이값은 near plane은 0, far plane은 1로 정규화된 깊이값입니다. far plane이 멀다면, 주전자는 어느 프래그먼트든 아주 작은 깊이값으로 정규화 되기때문에 거의 검게 보이는 것입니다.
 
-<img src="../imgs/19_depth_map_result.JPG">
+<img src="../imgs/19_depth_map_result.jpg">
 
 <img src="../imgs/19_depth_map_far_plane.jpg">
 
