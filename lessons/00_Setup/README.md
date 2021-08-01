@@ -46,13 +46,9 @@
 
 ---
 
-<div style="float:right">
-    <b><a href="../01_vertex_buffer/README.md">-> 다음 강의</a></b>
-</div>
+[다음 강의](../01_vertex_buffer/)
 
-<div style="float:left">
-    <b><a href="../README.md#01_vertex_buffer">목록으로</a></b>
-</div>
+[목록으로](../)
 
 
 

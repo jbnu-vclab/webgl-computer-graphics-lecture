@@ -148,3 +148,9 @@ gl.bufferData(gl.ARRAY_BUFFER, floatPositions, gl.STATIC_DRAW); //---(2)
 - [WebGL2 기초(WebGL2 Fundamentals)](https://webgl2fundamentals.org/webgl/lessons/ko/webgl-fundamentals.html)
 - [WebGL2 작동 원래(WebGL2 Fundamentals)](https://webgl2fundamentals.org/webgl/lessons/ko/webgl-how-it-works.html)
 - [WebGL2 상태 다이어그램](https://webgl2fundamentals.org/webgl/lessons/resources/webgl-state-diagram.html)
+
+---
+
+[다음 강의](../02_shader_attribute/)
+
+[목록으로](../)
