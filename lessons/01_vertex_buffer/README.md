@@ -120,7 +120,7 @@ WebGL 프로그래밍을 한다고 하면, (개념적으로) 여러분들이 해
     7.까지의 코드는 메인함수의 정의였고, 실제 웹페이지를 띄우면 메인함수를 호출하도록 명령문을 따로 작성해 주어야 합니다. JS는 C++과는 다릅니다!
 
 ---
-`http://localhost:8080/lessons/_current/contents.html`(또는 `http://localhost:8080/lessons/1_vertex_buffer/contents.html`)에 접속해 보시면 화면에 아무것도 나오지 않는 것을 보실 수 있습니다. 
+`http://localhost:8080/lessons/_current/contents.html`(또는 `http://localhost:8080/lessons/01_vertex_buffer/contents.html`)에 접속해 보시면 화면에 아무것도 나오지 않는 것을 보실 수 있습니다. 
 
 지금은 아무것도 나오지 않는 것이 정상입니다! 왜 아무것도 나오지 않는지 생각해 보시고 다음 내용으로 넘어가시면 되겠습니다.
 

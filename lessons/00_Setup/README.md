@@ -43,3 +43,16 @@
 ## Useful Links
 
 - [WebGL2 설정 및 설치(WebGL2 Fundamentals)](https://webgl2fundamentals.org/webgl/lessons/ko/webgl-setup-and-installation.html)
+
+---
+
+<div style="float:right">
+    <b><a href="../01_vertex_buffer/README.md">-> 다음 강의</a></b>
+</div>
+
+<div style="float:left">
+    <b><a href="../README.md#01_vertex_buffer">목록으로</a></b>
+</div>
+
+
+
