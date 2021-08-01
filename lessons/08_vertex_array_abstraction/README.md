@@ -151,11 +151,11 @@
 
     위에서 정의한 사각형 정점 데이터를 그림으로 나타내보면 아래와 같습니다.
 
-    <img src="../imgs/7_buffer_abstraction_rectangle_vertices.jpg" alt="" width="512">
+    <img src="../imgs/8_va_abstraction_rect_vertices.jpg" alt="" width="512">
 
     그리고 아시다시피 위 그림은 우리의 머리속에만 있는 것이고, 실제로는 그냥 float의(정확히는 아직 float배열로 변환하지 않았으므로 그냥 숫자의) 배열일 뿐입니다. 아래 그림처럼요.
     
-    <img src="../imgs/7_buffer_abstraction_rectangle_array.jpg">
+    <img src="../imgs/8_va_abstraction_rect_array.jpg">
 
     이 데이터를 해석하는 방법은 아래 코드를 통해 알려주게 됩니다.
 
@@ -201,7 +201,7 @@
 
     왜 이렇게 되어야하는지 아래 그림을 통해서 알아봅시다.
 
-    <img src="../imgs/7_buffer_abstraction_rectangle_stride_offset.jpg">
+    <img src="../imgs/8_va_abstraction_rect_array_stride_offset.jpg">
 
     보시다시피 배열에는 네 점에 대한 위치, 색상 값들이 순차적으로 나열되어 있습니다. 위치든 색상이든 다 4 byte float에 저장되어 있다고 가정하고 있습니다. 두번째 인자인 count는 몇 개씩이 해당 데이터인지 알려주는 것이므로 각각 2,4입니다. 코드에서는 인자로 넘어온 `countArray[]`값을 바로 사용하면 됩니다.
 
@@ -211,7 +211,7 @@
     
 ---
 
-`http://localhost:8080/lessons/_current/contents.html`(또는 `http://localhost:8080/lessons/8_vertex_array_abstraction/contents.html`)에 접속해 보시면 알록달록한 사각형이 보이는 것을 보실 수 있습니다. 왜 색상이 이렇게 표현되는지는 rasterization 과정과 프래그먼트 셰이더에 대해 배우면 알게 되실겁니다.
+`http://localhost:8080/lessons/_current/contents.html`(또는 `http://localhost:8080/lessons/08_vertex_array_abstraction/contents.html`)에 접속해 보시면 알록달록한 사각형이 보이는 것을 보실 수 있습니다. 왜 색상이 이렇게 표현되는지는 rasterization 과정과 프래그먼트 셰이더에 대해 배우면 알게 되실겁니다.
 
 VertexArray에 구현해둔 AddBuffer() 메소드 덕분에 우리는 각 attribute에 해당하는 데이터가 배열에 몇개 있는지를 인자로 넣어주기만 하면 알아서 stride와 offset을 계산해 줍니다. 물론 여기에는 몇 가지 가정(및 한계점)이 들어가 있다는 사실을 알아두셔야 합니다. 우선 떠오르는 것은 아래와 같습니다.
 
@@ -250,3 +250,9 @@ VertexArray에 구현해둔 AddBuffer() 메소드 덕분에 우리는 각 attrib
 
 - [C++ 버전의 VertexArray 클래스](https://github.com/diskhkme/OpenGL_Lecture_Material/commit/e20e563338fedc146edc8407f378313128943f09)
 - [vertexAttribPointer 레퍼런스 문서](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttribPointer)
+
+---
+
+[다음 강의](../09_shader_renderer_abstraction/)
+
+[목록으로](../)

@@ -189,6 +189,13 @@ Light를 설정할때 제 코드에는 ambientIntensity가 0.2로 되어 있는�
 2. Ambient intensity가 0.2고, diffuse intensity가 1.0이므로 합이 1을 넘어가게 됩니다. 이래도 되는걸까요? 합이 1을 넘어가게 되면 색상값이 어떻게 할당되는 걸까요?
 
 ## Useful Links
+
 - [Directional Light](https://webgl2fundamentals.org/webgl/lessons/ko/webgl-3d-lighting-directional.html)
+
+---
+
+[다음 강의](../17_specular_term/)
+
+[목록으로](../)
 
 

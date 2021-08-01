@@ -124,7 +124,7 @@ var positions = [ //삼각형의 2차원 좌표 정보. 현재는 RAM에 저장�
     마지막 두 개인 stide와 offset은 나중에 더 설명하기로 하고, 1,2,3번째 인자를 통해 데이터를 어떻게 끊어 읽어서 어디에 보낼건지가 모두 설명되어 있습니다. 0번 ID인 `a_position`에 데이터를 집어넣는 데 있어서 2개 float씩 끊어서 읽으라고 알려준 것입니다.
 
 ---
-`http://localhost:8080/lessons/_current/contents.html`(또는 `http://localhost:8080/lessons/2_shader_attribute/contents.html`)에 접속해 보시면 화면에 파란색 삼각형이 나오는 것을 보실 수 있습니다!
+`http://localhost:8080/lessons/_current/contents.html`(또는 `http://localhost:8080/lessons/02_shader_attribute/contents.html`)에 접속해 보시면 화면에 파란색 삼각형이 나오는 것을 보실 수 있습니다!
 
 설명이 길긴 했지만, 코드로 따지면 단 네줄만 추가되었을 뿐입니다. 문법이 중요한 것이 아니고 어떤 의미인지를 아는 것이 중요합니다.
 
@@ -146,3 +146,8 @@ var positions = [ //삼각형의 2차원 좌표 정보. 현재는 RAM에 저장�
 - [WebGL2 작동 원리(WebGL2 Fundamentals)](https://webgl2fundamentals.org/webgl/lessons/ko/webgl-how-it-works.html)
 - [WebGL2 상태 다이어그램](https://webgl2fundamentals.org/webgl/lessons/resources/webgl-state-diagram.html)
 
+---
+
+[다음 강의](../03_draw_from_index/)
+
+[목록으로](../)

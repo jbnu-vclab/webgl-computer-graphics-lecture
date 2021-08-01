@@ -270,5 +270,8 @@ Shadow acne 문제는 이론 강의시간에도 설명 드렸지만, 다음 강�
 
 - [그림자 맵핑](https://webgl2fundamentals.org/webgl/lessons/ko/webgl-shadows.html)
 
+---
 
+[다음 강의](../21_shadow_mapping_add_bias/)
 
+[목록으로](../)

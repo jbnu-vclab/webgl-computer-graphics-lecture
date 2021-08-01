@@ -164,7 +164,7 @@
 
 ---
 
-`http://localhost:8080/lessons/_current/contents.html`(또는 `http://localhost:8080/lessons/6_drawing_multiple_objects_pt1/contents.html`)에 접속해서 우측 상단의 슬라이더를 움직여 보세요.  삼각형과 사각형이 보이고, 슬라이더를 통해 사각형의 색상이 변하는 것을 보실 수 있습니다.
+`http://localhost:8080/lessons/_current/contents.html`(또는 `http://localhost:8080/lessons/06_drawing_multiple_objects_pt1/contents.html`)에 접속해서 우측 상단의 슬라이더를 움직여 보세요.  삼각형과 사각형이 보이고, 슬라이더를 통해 사각형의 색상이 변하는 것을 보실 수 있습니다.
 
 코드가 상당히 길어져서 당황스러우셨을 수 있을 것 같습니다. 이후 강의에서는 이 코드를 줄일 수 있는 기능을 소개 해 드리도록 하겠습니다. 지금까지 숨겨져 있었던 VAO(Vertex Array Object)라는 새로운 기능을 사용할 것입니다.
 
@@ -180,3 +180,9 @@
 
 - [WebGL2 상태 다이어그램](https://webgl2fundamentals.org/webgl/lessons/resources/webgl-state-diagram.html)
 - [언바인딩이 꼭 필요한가요?](https://gamedev.stackexchange.com/questions/90471/should-unbind-buffers)
+
+---
+
+[다음 강의](../06_drawing_multiple_objects_pt2/)
+
+[목록으로](../)

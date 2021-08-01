@@ -2,7 +2,7 @@
 
 이제 모델 행렬의 적용과, 외부 파일에서부터 정점 정보를 읽어오는 기능을 추가해 보도록 하겠습니다. 은근히 바뀐 부분이 많으니 잘 따라 오시길 바라겠습니다. 먼저 이번 강의에서 바뀐 내용에 대한 개략적인 설명은 아래와 같습니다.
 
-## 1) Basic Shader
+## Basic Shader
 
 먼저 셰이더 부분에서는, 지금까지와는 달리, 최소한의 모든(뭔가 역설적이지만) 기능이 구현된 셰이더를 작성했습니다. 뷰 행렬과 투영행렬 뿐만 아니라 모델 행렬(강의자료에서는 world matrix로 지칭)까지 모두 적용한 변환을 수행하도록 기능을 추가합니다. 따라서 우리가 그리고자 하는 모델이 항상 원점에만 위치해 있는것이 아니고, 월드 공간상 어느 위치에, 어떤 자세로 놓여있는지까지 기술할 수 있게 될겁니다.
 
@@ -10,7 +10,7 @@
 
 이렇게 MVP(Model, View, Projection) 행렬을 통해 클립 공간 좌표로 변환하는 것, 그리고 각 정점의 위치뿐만 아니라 텍스처 좌표와 법선 데이터를 받아 사용하는것이 셰이더의 일반적인 구조라고 보시면 됩니다. 그래서 이름도 앞의 길었던 수식들을 떼고, 간단히 Basic Shader라고 이름지었습니다.
 
-## 2) OBJ Loading
+## OBJ Loading
 
 OBJ 파일 포맷은 정점의 위치, 텍스처 좌표, 법선 등을 기록할 수 있는 간단한 파일 포맷입니다. Repository의 `resources/models/` 폴더 하위에 몇 가지 샘플 OBJ 파일들이 들어있고, 이 강의에서는 cube를 예제로 사용할겁니다. 
 
@@ -22,7 +22,7 @@ OBJ 파일 포맷은 정점의 위치, 텍스처 좌표, 법선 등을 기록할
 
 <img src="../imgs/12_model_matrix_and_load_obj_teapot.JPG"></img>
 
-## 3) Animation
+## Animation
 
 지금까지는 그려야 할 때만 그리기를 수행하도록 했습니다. 무슨 말이냐면, 강의 초반부에는 `main()` 마지막에 `gl.drawArrays()` 혹은 `gl.drawElements()`를 한번 호출해서 그림이 생성되면 그 그림이 계속 캔버스에 표시되는 상태였습니다. 그러다가 UI를 집어넣어보면서 UI값이 바뀔때마다 다시 화면을 그리도록 했고([인터랙티브 예제](../5_shader_uniform_interactive/README.md)), 지난 강의에서는 W,A,S,D와 마우스 입력이 들어올때마다 다시 화면을 그리도록 했습니다.
 
@@ -145,7 +145,7 @@ OBJ 파일 포맷은 정점의 위치, 텍스처 좌표, 법선 등을 기록할
 
     mesh에 어떠한 정보들이 저장되어 있는지 한번 봅시다. 중요한 부분은 노란색으로 표시 해 두었습니다.
 
-    <img src="../imgs/12_model_matrix_and_load_obj.jpg" width="1024"></img>
+    <img src="../imgs/12_model_matrix_and_load_obj.JPG" width="1024"></img>
 
     `mesh.vertices`는 길이 72인 배열로, 정점의 위치 좌표들이 저장되어 있습니다. 각 정점은 x,y,z 좌표를 가지고 있으므로 사실 정점의 개수는 72/3=24개 입니다. 음, 육면체(cube)인데 왜 정점이 8개가 아니라 24개 일까요? OBJ 파일에도 8개만 있었는데요? 
 
@@ -229,13 +229,13 @@ OBJ 파일 포맷은 정점의 위치, 텍스처 좌표, 법선 등을 기록할
     
     이때, 화면을 한번 그리고 끝나는 것이 아니라 1초에 60번씩(모니터 주사율에 따라 다를 수 있음) 새로 그립니다. 그래야 움직이는 GIF도 보여줄 수 있고, 우리가 스크롤을 하면 문서의 아래쪽에 있는 컨텐츠도 보여줄 수 있습니다. 우리 눈의 잔상효과로 인해 브라우저가 화면을 새로 그리는것을 우리는 알아챌 수 없습니다. 너무 빨라서요. 이를 간단히 다이어그램으로 아래처럼 그려볼 수 있습니다.
 
-    <img src="../imgs/12_model_matrix_and_load_obj_raf1.jpg" width="512"></img>
+    <img src="../imgs/12_model_matrix_and_load_obj_raf1.JPG" width="512"></img>
 
     브라우저가 화면을 새로 그리기 직전에 어떠한 함수를 호출하게 하고 싶다면, `requestAnimationFrame()`에 인자로 콜백함수를 넘겨주면 됩니다. 여기서는 `drawScene`을 콜백함수로 사용하고 있습니다. 위 코드에서 (1)을 실행하게 되면 다음 화면을 그리기 직전에 `drawScene()`이 호출되어 WebGL도 새로운 이미지가 그려져 화면에 표시됩니다.
 
     여기서 끝나면 안되고, 계속 이미지를 갱신해야 하기 때문에 (2) 코드를 통해 `drawScene()`의 마지막에 `requestAnimationFrame()`을 다시 호출해야 합니다. 그러면 자동적으로 브라우저의 다음 화면을 그리기 직전에 증가한 `rotationAngle`값으로 계산된 이미지가 그려지고, 화면에 표시되게 됩니다. 이 과정을 다이어그램으로 나타내보면 아래와 같습니다. (그림 내의 (1),(2),(3),(4)는 위 코드의 (1),(2)와는 별개입니다. 혼동하지 마세요.)
 
-    <img src="../imgs/12_model_matrix_and_load_obj_raf2.jpg" width="512"></img>
+    <img src="../imgs/12_model_matrix_and_load_obj_raf2.JPG" width="512"></img>
 
     아주 간단하게 화면을 계속 갱신하도록 할 수 있습니다.
 
@@ -289,3 +289,9 @@ OBJ 파일 포맷은 정점의 위치, 텍스처 좌표, 법선 등을 기록할
 - [Varying의 보간(WebGL2Fundamentals)](https://webgl2fundamentals.org/webgl/lessons/ko/webgl-how-it-works.html)
 - [requestAnimationFrame을 사용한 애니메이션](https://webgl2fundamentals.org/webgl/lessons/ko/webgl-animation.html)
 - [requestAnimationFrame 명세](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame)
+
+---
+
+[다음 강의](../13_model_abstraction/)
+
+[목록으로](../)

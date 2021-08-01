@@ -24,7 +24,8 @@ WebGL 프로그래밍을 한다고 하면, (개념적으로) 여러분들이 해
 
 ---
 1. main 함수 선언
-    ```
+
+    ```js
     function main() {
         ...
     }
@@ -32,7 +33,7 @@ WebGL 프로그래밍을 한다고 하면, (개념적으로) 여러분들이 해
 
 2. WebGL Context 얻어오기
 
-    ```
+    ```js
     var canvas = document.querySelector("#c");
     var gl = canvas.getContext("webgl2");
     if (!gl) {
@@ -48,7 +49,7 @@ WebGL 프로그래밍을 한다고 하면, (개념적으로) 여러분들이 해
 
 3. 메모리에 데이터 정의
 
-    ```
+    ```js
     var positions = [ //삼각형의 2차원 좌표 정보. 현재는 RAM에 저장되어 있는 상태
         -0.5, -0.5, // (-0.5, -0.5) 좌표에 점 하나
         0.0,  0.5,  // ( 0.0,  0.5) 좌표에 점 하나
@@ -60,7 +61,7 @@ WebGL 프로그래밍을 한다고 하면, (개념적으로) 여러분들이 해
 
 4. GPU에 버퍼 생성
 
-    ```
+    ```js
     var positionBuffer = gl.createBuffer(); 
     ```
 
@@ -72,7 +73,7 @@ WebGL 프로그래밍을 한다고 하면, (개념적으로) 여러분들이 해
 
 5. 버퍼 바인딩
 
-    ```
+    ```js
     gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer); 
     ```
 
@@ -86,7 +87,7 @@ WebGL 프로그래밍을 한다고 하면, (개념적으로) 여러분들이 해
 
 6. 버퍼에 데이터 전달
 
-    ```
+    ```js
     var floatPositions = new Float32Array(positions);
     gl.bufferData(gl.ARRAY_BUFFER, 
 				floatPositions,
@@ -103,7 +104,7 @@ WebGL 프로그래밍을 한다고 하면, (개념적으로) 여러분들이 해
 
 7. 이미지 생성하기
 
-    ```
+    ```js
     gl.drawArrays(gl.TRIANGLES, 0, 3);
     ```
 
@@ -113,14 +114,14 @@ WebGL 프로그래밍을 한다고 하면, (개념적으로) 여러분들이 해
 
 8. main함수 호출
 
-    ```
+    ```js
     main();
     ```
     
     7.까지의 코드는 메인함수의 정의였고, 실제 웹페이지를 띄우면 메인함수를 호출하도록 명령문을 따로 작성해 주어야 합니다. JS는 C++과는 다릅니다!
 
 ---
-`http://localhost:8080/lessons/_current/contents.html`(또는 `http://localhost:8080/lessons/1_vertex_buffer/contents.html`)에 접속해 보시면 화면에 아무것도 나오지 않는 것을 보실 수 있습니다. 
+`http://localhost:8080/lessons/_current/contents.html`(또는 `http://localhost:8080/lessons/01_vertex_buffer/contents.html`)에 접속해 보시면 화면에 아무것도 나오지 않는 것을 보실 수 있습니다. 
 
 지금은 아무것도 나오지 않는 것이 정상입니다! 왜 아무것도 나오지 않는지 생각해 보시고 다음 내용으로 넘어가시면 되겠습니다.
 
@@ -132,7 +133,7 @@ WebGL 프로그래밍을 한다고 하면, (개념적으로) 여러분들이 해
 
 3. 아래와 같은 코드가 있다고 해 봅시다. (1)과 (2)는 완전히 동일한 명령문입니다. (1)을 실행하면 어떤 버퍼로 데이터가 들어가는지, (2)를 실행하면 어떤 버퍼로 데이터가 들어가는지 생각해 보세요. (너무 쉽죠? 그래도 꼭 기억해 두십시오.)
 
-```
+```js
 var buffer1 = gl.createBuffer(); 
 var buffer2 = gl.createBuffer();
 
@@ -148,3 +149,9 @@ gl.bufferData(gl.ARRAY_BUFFER, floatPositions, gl.STATIC_DRAW); //---(2)
 - [WebGL2 기초(WebGL2 Fundamentals)](https://webgl2fundamentals.org/webgl/lessons/ko/webgl-fundamentals.html)
 - [WebGL2 작동 원래(WebGL2 Fundamentals)](https://webgl2fundamentals.org/webgl/lessons/ko/webgl-how-it-works.html)
 - [WebGL2 상태 다이어그램](https://webgl2fundamentals.org/webgl/lessons/resources/webgl-state-diagram.html)
+
+---
+
+[다음 강의](../02_shader_attribute/)
+
+[목록으로](../)

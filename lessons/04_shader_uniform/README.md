@@ -63,7 +63,7 @@ JS 쪽으로부터 셰이더 프로그램으로 원하는 값을 그때그때 �
 
 ---
 
-`http://localhost:8080/lessons/_current/contents.html`(또는 `http://localhost:8080/lessons/4_shader_uniform/contents.html`)에 접속해 보시면 화면에 보라색 사각형이 나오는 것을 보실 수 있습니다.
+`http://localhost:8080/lessons/_current/contents.html`(또는 `http://localhost:8080/lessons/04_shader_uniform/contents.html`)에 접속해 보시면 화면에 보라색 사각형이 나오는 것을 보실 수 있습니다.
 
 "그냥 이쪽(셰이더)에 작성하던 코드를 저쪽(CPU 사이드)으로 옮겼구나"라고 생각하실 수도 있지만 사실 Uniform이라는 것은 향후 우리가 작성해 볼 코드에서 굉장히 중요한 역할을 수행합니다. 특히 3차원 표현을 위한 Model/View/Projection 행렬을 전달하는데 사용되기 때문에 더 그러한데요, 지금 코드만 가지고는 감이 잘 안오실테니 얼른 uniform을 좀더 재미있게 활용하는 코드로 넘어가 보도록 합시다.
 
@@ -80,4 +80,10 @@ JS 쪽으로부터 셰이더 프로그램으로 원하는 값을 그때그때 �
 
 ## Useful Links
 
-- [WebGL Shader와 GLSL]](https://webgl2fundamentals.org/webgl/lessons/ko/webgl-shaders-and-glsl.html#uniforms)
+- [WebGL Shader와 GLSL](https://webgl2fundamentals.org/webgl/lessons/ko/webgl-shaders-and-glsl.html#uniforms)
+
+---
+
+[다음 강의](../05_shader_uniform_interactive/)
+
+[목록으로](../)

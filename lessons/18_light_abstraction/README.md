@@ -221,4 +221,9 @@
 - [Spot light](https://webgl2fundamentals.org/webgl/lessons/ko/webgl-3d-lighting-spot.html)
 - [캔버스 리사이징과 WebGL](https://webgl2fundamentals.org/webgl/lessons/ko/webgl-resizing-the-canvas.html)
 
+---
+
+[다음 강의](../19_depth_map/)
+
+[목록으로](../)
 

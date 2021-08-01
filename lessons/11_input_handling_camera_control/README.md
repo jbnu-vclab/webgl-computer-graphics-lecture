@@ -311,3 +311,9 @@
 
 - [Yaw, Pitch, Roll](https://happy8earth.tistory.com/492)
 - [구면 좌표계](https://ko.wikipedia.org/wiki/%EA%B5%AC%EB%A9%B4%EC%A2%8C%ED%91%9C%EA%B3%84)
+
+---
+
+[다음 강의](../12_model_matrix_and_load_obj/)
+
+[목록으로](../)

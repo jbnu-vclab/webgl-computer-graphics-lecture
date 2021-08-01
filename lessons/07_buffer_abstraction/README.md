@@ -77,7 +77,7 @@ Abstraction의 첫 단계로 버퍼를 관리하는 클래스를 만들어 보�
 
     거의 비슷합니다. 다만 IBO중에 몇 개를 그릴지를 `count`를 사용해 명시적으로 전달해 주었고 필드에 저장해둔 `count`를 반환해주는 `getCount()`를 getter로 구현해 두었습니다. 나중에 드로우콜을 호출할 때 사용됩니다.
 
-3. [초기화]VertexBuffer/IndexBuffer 클래스 객체 생성
+3. [초기화] VertexBuffer/IndexBuffer 클래스 객체 생성
 
     ```js
     let rectangleVB = new VertexBuffer(gl, rectanglePositions); //<-- VertexBuffer 클래스 사용
@@ -89,7 +89,7 @@ Abstraction의 첫 단계로 버퍼를 관리하는 클래스를 만들어 보�
     
     클래스 생성에 `let`키워드를 사용하였는데 JS에서 가급적 `var`보다는 `let`을 사용하는 것이 안전합니다. ([var, let, const 키워드](https://velog.io/@bathingape/JavaScript-var-let-const-%EC%B0%A8%EC%9D%B4%EC%A0%90)) 이전에 다른 부분에서는 저도 관습적으로 `var`을 사용했는데 나중에는 수정할 것 같습니다.
 
-4. [렌더링]사각형 그리기
+4. [렌더링] 사각형 그리기
 
     ```js
     var primitiveType = gl.TRIANGLES;
@@ -102,7 +102,7 @@ Abstraction의 첫 단계로 버퍼를 관리하는 클래스를 만들어 보�
 
 ---
 
-`http://localhost:8080/lessons/_current/contents.html`(또는 `http://localhost:8080/lessons/7_buffer_abstraction/contents.html`)에 접속해서 우측 상단의 슬라이더를 움직여 보세요. 사각형이 표시되고 색상이 변하면 수정된 코드가 문제없이 동작하는겁니다.
+`http://localhost:8080/lessons/_current/contents.html`(또는 `http://localhost:8080/lessons/07_buffer_abstraction/contents.html`)에 접속해서 우측 상단의 슬라이더를 움직여 보세요. 사각형이 표시되고 색상이 변하면 수정된 코드가 문제없이 동작하는겁니다.
 
 클래스/필드/메소드가 뭐고 생성자가 뭔지 모르는 채로 이 강의를 듣는 분은 없으실 것으로 압니다. (C++ 혹은 JAVA가 선수과목입니다.) 혹시나 그런 분이 계시다면 지금이라도 객체지향 프로그래밍 관련해서 먼저 이해를 하시고 나머지 내용을 보셔야 이해가 될겁니다.
 
@@ -125,3 +125,9 @@ Abstraction의 첫 단계로 버퍼를 관리하는 클래스를 만들어 보�
 - [var, let, const 키워드](https://velog.io/@bathingape/JavaScript-var-let-const-%EC%B0%A8%EC%9D%B4%EC%A0%90)
 - [모듈 내보내고 가져오기](https://ko.javascript.info/import-export)
 - [더 많은 기능을 가진 Abstraction 코드(from WebGL2Fundamentals)](https://webgl2fundamentals.org/webgl/lessons/ko/webgl-less-code-more-fun.html)
+
+---
+
+[다음 강의](../08_vertex_array_abstraction/)
+
+[목록으로](../)

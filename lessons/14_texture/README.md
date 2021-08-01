@@ -268,3 +268,8 @@
 - [texParameter](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/texParameter)
 - [교차 출처 이미지(CORS)](https://webgl2fundamentals.org/webgl/lessons/ko/webgl-cors-permission.html)
 
+---
+
+[다음 강의](../15_ambient_light/)
+
+[목록으로](../)
