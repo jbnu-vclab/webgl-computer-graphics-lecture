@@ -127,4 +127,8 @@
 - [에일리어싱](https://en.wikipedia.org/wiki/Aliasing)
 - [Cascaded Shadow Mapping](https://docs.unity3d.com/kr/2018.4/Manual/DirLightShadows.html)
 
+---
 
+[다음 강의](../22_shadow_mapping_pcf/)
+
+[목록으로](../)

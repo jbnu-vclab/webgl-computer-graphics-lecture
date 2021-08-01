@@ -127,4 +127,8 @@ PCF(Percentage Close Filtering)는 계단 현상과 hard shadow 문제를 위와
 - [NVidia GPU Gems의 Shadow Map 관련 글](https://developer.nvidia.com/gpugems/gpugems3/part-ii-light-and-shadows/chapter-8-summed-area-variance-shadow-maps)
 - [textureSize() 내장함수](https://www.khronos.org/registry/OpenGL-Refpages/gl4/html/textureSize.xhtml)
 
+---
 
+[다음 강의](../23_epilogue/)
+
+[목록으로](../)

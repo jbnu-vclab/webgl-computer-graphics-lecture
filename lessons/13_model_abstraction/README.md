@@ -167,3 +167,9 @@
 ## Useful Links
 
 - [glMatrix 문서](https://glmatrix.net/docs/index.html)
+
+---
+
+[다음 강의](../14_texture/)
+
+[목록으로](../)

@@ -24,7 +24,8 @@ WebGL 프로그래밍을 한다고 하면, (개념적으로) 여러분들이 해
 
 ---
 1. main 함수 선언
-    ```
+
+    ```js
     function main() {
         ...
     }
@@ -32,7 +33,7 @@ WebGL 프로그래밍을 한다고 하면, (개념적으로) 여러분들이 해
 
 2. WebGL Context 얻어오기
 
-    ```
+    ```js
     var canvas = document.querySelector("#c");
     var gl = canvas.getContext("webgl2");
     if (!gl) {
@@ -48,7 +49,7 @@ WebGL 프로그래밍을 한다고 하면, (개념적으로) 여러분들이 해
 
 3. 메모리에 데이터 정의
 
-    ```
+    ```js
     var positions = [ //삼각형의 2차원 좌표 정보. 현재는 RAM에 저장되어 있는 상태
         -0.5, -0.5, // (-0.5, -0.5) 좌표에 점 하나
         0.0,  0.5,  // ( 0.0,  0.5) 좌표에 점 하나
@@ -60,7 +61,7 @@ WebGL 프로그래밍을 한다고 하면, (개념적으로) 여러분들이 해
 
 4. GPU에 버퍼 생성
 
-    ```
+    ```js
     var positionBuffer = gl.createBuffer(); 
     ```
 
@@ -72,7 +73,7 @@ WebGL 프로그래밍을 한다고 하면, (개념적으로) 여러분들이 해
 
 5. 버퍼 바인딩
 
-    ```
+    ```js
     gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer); 
     ```
 
@@ -86,7 +87,7 @@ WebGL 프로그래밍을 한다고 하면, (개념적으로) 여러분들이 해
 
 6. 버퍼에 데이터 전달
 
-    ```
+    ```js
     var floatPositions = new Float32Array(positions);
     gl.bufferData(gl.ARRAY_BUFFER, 
 				floatPositions,
@@ -103,7 +104,7 @@ WebGL 프로그래밍을 한다고 하면, (개념적으로) 여러분들이 해
 
 7. 이미지 생성하기
 
-    ```
+    ```js
     gl.drawArrays(gl.TRIANGLES, 0, 3);
     ```
 
@@ -113,7 +114,7 @@ WebGL 프로그래밍을 한다고 하면, (개념적으로) 여러분들이 해
 
 8. main함수 호출
 
-    ```
+    ```js
     main();
     ```
     
@@ -132,7 +133,7 @@ WebGL 프로그래밍을 한다고 하면, (개념적으로) 여러분들이 해
 
 3. 아래와 같은 코드가 있다고 해 봅시다. (1)과 (2)는 완전히 동일한 명령문입니다. (1)을 실행하면 어떤 버퍼로 데이터가 들어가는지, (2)를 실행하면 어떤 버퍼로 데이터가 들어가는지 생각해 보세요. (너무 쉽죠? 그래도 꼭 기억해 두십시오.)
 
-```
+```js
 var buffer1 = gl.createBuffer(); 
 var buffer2 = gl.createBuffer();
 

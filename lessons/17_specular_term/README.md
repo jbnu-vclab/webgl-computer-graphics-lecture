@@ -222,5 +222,10 @@ Phong lighting model은 이러한 한계점이 있기 때문에 최근에는 에
 - [Point Light](https://webgl2fundamentals.org/webgl/lessons/ko/webgl-3d-lighting-point.html)
 - [물리기반 렌더링(PBR)](https://learnopengl.com/PBR/Theory)
 
+---
+
+[다음 강의](../18_light_abstraction/)
+
+[목록으로](../)
 
 

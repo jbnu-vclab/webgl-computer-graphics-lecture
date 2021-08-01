@@ -103,7 +103,7 @@ VAO에 대한 설명을 좀 더 보고 싶으시다면 다시한번 [WebGL2 상�
 
 ---
 
-`http://localhost:8080/lessons/_current/contents.html`(또는 `http://localhost:8080/lessons/6_drawing_multiple_objects_pt2/contents.html`)에 접속해서 우측 상단의 슬라이더를 움직여 보세요.  이전과 동일한 장면을 더 짧은 코드로 볼 수 있게 되었습니다.
+`http://localhost:8080/lessons/_current/contents.html`(또는 `http://localhost:8080/lessons/06_drawing_multiple_objects_pt2/contents.html`)에 접속해서 우측 상단의 슬라이더를 움직여 보세요.  이전과 동일한 장면을 더 짧은 코드로 볼 수 있게 되었습니다.
 
 코드가 절반 정도로 줄었다면 더 좋았을텐데 사실 그렇지는 않죠 ^^; 그런데 사실 우리는 간단한 것들을 그리고 있어서 그렇지 실제로 좀더 복잡한 것들을 그리게 된다면 굉징히 효과가 있습니다. 
 
@@ -149,4 +149,10 @@ VAO에 대한 설명을 좀 더 보고 싶으시다면 다시한번 [WebGL2 상�
 
 - [WebGL2 상태 다이어그램](https://webgl2fundamentals.org/webgl/lessons/resources/webgl-state-diagram.html)
 - [VAO 설명 영상](https://www.youtube.com/watch?v=WMiggUPst-Q)
-- [VAO에 대한 상세 설명]](https://stackoverflow.com/questions/26552642/when-is-what-bound-to-a-vao)
+- [VAO에 대한 상세 설명](https://stackoverflow.com/questions/26552642/when-is-what-bound-to-a-vao)
+
+---
+
+[다음 강의](../07_buffer_abstraction/)
+
+[목록으로](../)

@@ -22,7 +22,7 @@
 ### Modify
 7. 이제 `D:/Lecture/CG//lessons/_current/contents.html` 파일을 메모장/편집기로 열어서 아래 `<div>`태그 내의 문자열을 다른 문자로 바꿔 보세요.
 
-    ```
+    ```html
     <div>WebGL Setup Result</div>
     ```
 

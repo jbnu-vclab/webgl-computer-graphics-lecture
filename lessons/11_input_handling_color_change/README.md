@@ -72,13 +72,13 @@ W,A,S,D로 카메라를 움직이기 위한 구현에 앞서, 우선 간단히 �
     }
     ```
 
-  키보드 입력 콜백함수는 위와 같이 구현했습니다. 콜백으로 등록하면, 인자로 넘어오는 `e` 객체에 해당 이벤트와 관련한 다양한 정보가 들어있도록 구현되어 있습니다. `e.code`를 통해 눌린 키가 어떤 키인지를 알 수 있습니다. 
-  
-  여기서는 코드가 "KeyA", "KeyD", "KeyW", "KeyS"인 경우 `red`값을 0.1씩 더하거나 빼기, `green`값을 0.1씩 더하거나 빼도록 구현해 두었습니다. 중요한 것은 마지막의 `drawScene()` 호출입니다. 사용자가 키보드를 눌렀을때 변화된 값을 인터랙티브하게 보여주기 위해서는 이미지를 새로 그려주어야 합니다. 따라서 `drawScene()`의 호출이 필요합니다.
+    키보드 입력 콜백함수는 위와 같이 구현했습니다. 콜백으로 등록하면, 인자로 넘어오는 `e` 객체에 해당 이벤트와 관련한 다양한 정보가 들어있도록 구현되어 있습니다. `e.code`를 통해 눌린 키가 어떤 키인지를 알 수 있습니다. 
+    
+    여기서는 코드가 "KeyA", "KeyD", "KeyW", "KeyS"인 경우 `red`값을 0.1씩 더하거나 빼기, `green`값을 0.1씩 더하거나 빼도록 구현해 두었습니다. 중요한 것은 마지막의 `drawScene()` 호출입니다. 사용자가 키보드를 눌렀을때 변화된 값을 인터랙티브하게 보여주기 위해서는 이미지를 새로 그려주어야 합니다. 따라서 `drawScene()`의 호출이 필요합니다.
 
-  `e`에 어떤 다른값들이 들어있는지 궁금하신가요? 개발자 도구를 사용해 아래와 같이 손쉽게 확인해 볼 수 있습니다. 개발자 도구를 잘 활용하시기를 바랍니다.
+    `e`에 어떤 다른값들이 들어있는지 궁금하신가요? 개발자 도구를 사용해 아래와 같이 손쉽게 확인해 볼 수 있습니다. 개발자 도구를 잘 활용하시기를 바랍니다.
 
-  ![](../imgs/11_input_handling_keyboardevent.jpg)
+    ![](../imgs/11_input_handling_keyboardevent.jpg)
 
 5. 마우스 이동 콜백함수 구현
 
@@ -116,3 +116,9 @@ W,A,S,D 키를 사용해 카메라를 움직이기 전에 키보드와 마우스
 - [이벤트 유형](https://developer.mozilla.org/ko/docs/Web/Events)
 - [WebGL 애니메이션(WebGL2Fundamentals)](https://webgl2fundamentals.org/webgl/lessons/ko/webgl-animation.html)
 - [WebGL 키보드 입력(WebGL2Fundamentals)](https://webgl2fundamentals.org/webgl/lessons/ko/webgl-tips.html#tabindex)
+
+---
+
+[다음 강의](../11_input_handling_camera_control/)
+
+[목록으로](../)

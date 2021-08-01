@@ -162,8 +162,16 @@
 
 ## Advanced
 
+없음
 
 ## Useful Links
 
+없음
+
+---
+
+[다음 강의](../16_diffuse_light/)
+
+[목록으로](../)
 
 

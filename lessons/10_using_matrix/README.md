@@ -172,3 +172,9 @@
 - [GLM](https://github.com/g-truc/glm)
 - [직교 투영(WebGL2Fundamentals)](https://webgl2fundamentals.org/webgl/lessons/ko/webgl-3d-orthographic.html)
 - [캔버스 리사이징(WebGL2Fundamentals)](https://webgl2fundamentals.org/webgl/lessons/ko/webgl-resizing-the-canvas.html)
+
+---
+
+[다음 강의](../11_input_handling_color_change/)
+
+[목록으로](../)
