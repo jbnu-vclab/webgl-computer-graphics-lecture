@@ -41,3 +41,8 @@ WebGL 구현을 위해 JS(자바스크립트)와 GLSL을 사용합니다. HTML�
 - [WebGL2 Fundamental](https://webgl2fundamentals.org/webgl/lessons/ko/): 추가적인 설명이 보고싶거나, WebGL 관련한 보다 상세한 내용이 궁금할 때는 이 링크를 참고하세요.
 - [OpenGL Lecture Series](https://www.youtube.com/watch?v=W3gAzLwfIP0&list=PLlrATfBNZ98foTJPJ_Ev03o2oq3-GGOS2): "The Cherno"라는 개발자의 C++ OpenGL 강의 영상입니다. 제 [OpenGL 강의 코드](https://github.com/diskhkme/OpenGL_Lecture_Material)가 이 스타일을 따랐고, 이 Reposiroty의 코드도 이 스타일을 따르고 있습니다.
 - [Serves](https://greggman.github.io/servez/): 이 Repository의 결과물을 정상적으로 보려면 웹서버가 필요합니다. 간단하게 설치할 수 있는 웹서버입니다. (`/lessons/0_Setup/`에서 설치, 사용 방법 설명)
+
+## Ray Tracing
+- 다른 카테고리의 렌더링 방법으로 광선 추적(Ray Tracing)이 있습니다. 광선 추적 또한 이번 학기 강의 후반부에 다룰 예정입니다.
+- 가장 좋은 공부 방법은 [TinyRaytracer](https://github.com/ssloy/tinyraytracer) 또는 [Ray Tracing in one weekend](https://raytracing.github.io/books/RayTracingInOneWeekend.html)와 같은 자료를 참고하여 직접 구현해 보는 것입니다.
+- 해당 자료들을 기반으로 제가 구현한 코드는 [링크](https://github.com/diskhkme/TinyRaytracer_SFML)에 있으니 참고 하시기 바랍니다.
