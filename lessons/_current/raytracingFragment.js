@@ -1,10 +1,27 @@
 export default
 `#version 300 es
-precision highp float;
+precision mediump float;
 
 layout(location=0) out vec4 outColor;
 
 uniform vec2 u_resolution;
+
+//--- Utility
+// Φ = Golden Ratio
+float g_seed = 0.25;
+#define PHI 1.61803398874989484820459
+
+float random (vec2 st) {
+    return fract(tan(distance(st*PHI, st)*g_seed)*st.x);
+}
+
+vec2 random2(float seed){
+ return vec2(
+   random(vec2(seed-1.23, (seed+3.1)* 3.2)),
+   random(vec2(seed+12.678, seed - 5.1324))
+   );
+}
+
 
 //--- Scene
 const int SPHERE_COUNT = 2;
@@ -108,24 +125,54 @@ vec3 ray_color(ray r)
     return (1.0-t)*vec3(1.0, 1.0, 1.0) + t*vec3(0.5, 0.7, 1.0);
 }
 
-void main() {
+//--- Camera
+struct camera {
+    vec3 origin;
+    vec3 lower_left_corner;
+    vec3 horizontal;
+    vec3 vertical;
+};
+
+camera make_camera()
+{
     float aspect_ratio = u_resolution.x / u_resolution.y;
     float viewport_height = 2.0;
     float viewport_width = aspect_ratio * viewport_height;
     float focal_length = 1.0;
 
-    vec3 origin = vec3(0,0,0);
-    vec3 horizontal = vec3(viewport_width, 0, 0);
-    vec3 vertical = vec3(0, viewport_height, 0);
-    vec3 lower_left_corner = origin - horizontal*0.5 - vertical*0.5 - vec3(0,0,focal_length);
+    camera cam;
+    cam.origin = vec3(0,0,0);
+    cam.horizontal = vec3(viewport_width, 0, 0);
+    cam.vertical = vec3(0, viewport_height, 0);
+    cam.lower_left_corner = cam.origin - cam.horizontal*0.5 - cam.vertical*0.5 - vec3(0,0,focal_length);
+    return cam;
+}
 
-    float u = gl_FragCoord.x / u_resolution.x;
-    float v = gl_FragCoord.y / u_resolution.y;
+ray get_ray(camera cam, float u, float v)
+{
+    return ray(cam.origin, cam.lower_left_corner + u*cam.horizontal + v*cam.vertical - cam.origin);
+}
 
-    ray r;
-    r.orig = origin;
-    r.dir = lower_left_corner + u*horizontal + v*vertical - origin;
+void main() {
+    const int samples_per_pixel = 100;
 
-    outColor = vec4(ray_color(r),1.0);
+    camera cam = make_camera();
+
+    vec3 pixel_color = vec3(0,0,0);
+    vec2 uv = gl_FragCoord.xy / u_resolution;
+    
+    for(int s=0; s < samples_per_pixel; s++)
+    {
+        float s_seed = random(vec2(s,s));
+
+        vec2 jitter = random2(s_seed);
+        vec2 st = uv + jitter * 0.001;
+        ray r = get_ray(cam, st.x, st.y);
+        pixel_color = pixel_color + ray_color(r);
+    }
+    pixel_color = pixel_color * (1.0/float(samples_per_pixel));
+
+    outColor = vec4(pixel_color,1.0);
+    //outColor = vec4(rand(), rand(), rand(), 1.0);
 }
 `;
