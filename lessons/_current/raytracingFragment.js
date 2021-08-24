@@ -5,21 +5,45 @@ precision mediump float;
 layout(location=0) out vec4 outColor;
 
 uniform vec2 u_resolution;
+uniform float time;
+
+//--- Parameters
+#define SAMPLES_PER_PIXEL 100
+#define MAX_DEPTH 50
+
+#define PI 3.1415926535
+
 
 //--- Utility
-// Φ = Golden Ratio
-float g_seed = 0.25;
-#define PHI 1.61803398874989484820459
+vec2 randState;
 
-float random (vec2 st) {
-    return fract(tan(distance(st*PHI, st)*g_seed)*st.x);
+float hash( const float n ) 
+{
+    return fract(sin(n)*43758.54554213);
 }
 
-vec2 random2(float seed){
- return vec2(
-   random(vec2(seed-1.23, (seed+3.1)* 3.2)),
-   random(vec2(seed+12.678, seed - 5.1324))
-   );
+// bad random :(
+float random(){
+    randState.x = fract(sin(dot(randState.xy + time, vec2(12.9898, 78.233))) * 43758.5453);
+    randState.y = fract(sin(dot(randState.xy + time, vec2(12.9898, 78.233))) * 43758.5453);
+    
+    return randState.x;
+}
+
+vec3 random_in_unit_sphere()
+{
+    float phi = 2.0 * PI * random();
+    float cosTheta = 2.0 * random() - 1.0;
+    float u = random();
+
+    float theta = acos(cosTheta);
+    float r = pow(u, 1.0 / 3.0);
+
+    float x = r * sin(theta) * cos(phi);
+    float y = r * sin(theta) * sin(phi);
+    float z = r * cos(theta);
+
+    return vec3(x, y, z);
 }
 
 
@@ -115,14 +139,30 @@ bool hit_scene(ray r, float t_min, float t_max, out hit_record rec)
 vec3 ray_color(ray r)
 {
     hit_record rec;
-    if(hit_scene(r, 0.0, 10000.0, rec))
+
+    vec3 color = vec3(1.0);
+
+    for(int i=0;i<MAX_DEPTH;i++)
     {
-        return 0.5 * (rec.normal + vec3(1,1,1));
+        bool is_hit = hit_scene(r, 0.001, 10000.0, rec);
+
+        if(is_hit)
+        {
+            vec3 target = rec.p + rec.normal + random_in_unit_sphere();
+            //vec3 target = rec.p + rec.normal + vec3(1,0,0);
+            r = ray(rec.p, target-rec.p);
+            color = color * 0.5;
+        }
+        else
+        {
+            vec3 unit_direction = normalize(r.dir);
+            float t = 0.5*(unit_direction.y + 1.0);
+            color = color * ((1.0-t)*vec3(1.0, 1.0, 1.0) + t*vec3(0.5, 0.7, 1.0));
+            break;
+        }
     }
 
-    vec3 unit_direction = normalize(r.dir);
-    float t = 0.5*(unit_direction.y + 1.0);
-    return (1.0-t)*vec3(1.0, 1.0, 1.0) + t*vec3(0.5, 0.7, 1.0);
+    return color;
 }
 
 //--- Camera
@@ -154,25 +194,23 @@ ray get_ray(camera cam, float u, float v)
 }
 
 void main() {
-    const int samples_per_pixel = 100;
+    randState = gl_FragCoord.xy / u_resolution.xy;
 
     camera cam = make_camera();
 
     vec3 pixel_color = vec3(0,0,0);
-    vec2 uv = gl_FragCoord.xy / u_resolution;
     
-    for(int s=0; s < samples_per_pixel; s++)
+    for(int s=0; s < SAMPLES_PER_PIXEL; s++)
     {
-        float s_seed = random(vec2(s,s));
+        float u = float(gl_FragCoord.x + random()) / float(u_resolution.x);
+        float v = float(gl_FragCoord.y + random()) / float(u_resolution.y);
 
-        vec2 jitter = random2(s_seed);
-        vec2 st = uv + jitter * 0.001;
-        ray r = get_ray(cam, st.x, st.y);
+        ray r = get_ray(cam, u, v);
         pixel_color = pixel_color + ray_color(r);
     }
-    pixel_color = pixel_color * (1.0/float(samples_per_pixel));
+    pixel_color = pixel_color * (1.0/float(SAMPLES_PER_PIXEL));
 
-    outColor = vec4(pixel_color,1.0);
-    //outColor = vec4(rand(), rand(), rand(), 1.0);
+    outColor = vec4(sqrt(pixel_color),1.0);
+    //outColor = vec4(random(),random(),random(),1.0);
 }
 `;

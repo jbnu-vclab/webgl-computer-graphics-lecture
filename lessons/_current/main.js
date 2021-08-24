@@ -46,6 +46,10 @@ function main() {
     let renderer = new Renderer();
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
+    let resolutionLocation = gl.getUniformLocation(shader.id, "u_resolution");
+    let timeLocation = gl.getUniformLocation(shader.id, "time");
+    let timerStart = Date.now();
+
     drawScene();
 
     //화면을 새로 그리기 위한 명령어들을 모아 함수로 구현하였음
@@ -57,8 +61,9 @@ function main() {
 
         //여기서만 임시로 사용하므로 vec2f uniform입력은 따로 추가 안함
         shader.Bind(gl);
-        let resolutionLocation = gl.getUniformLocation(shader.id, "u_resolution");
+
         gl.uniform2f(resolutionLocation, gl.canvas.width, gl.canvas.height);
+        gl.uniform1f(timeLocation, Date.now() - timerStart);
 
         gl.clearColor(0, 0, 0, 0);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
