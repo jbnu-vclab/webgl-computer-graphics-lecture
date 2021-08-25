@@ -46,43 +46,82 @@ vec3 random_in_unit_sphere()
     return vec3(x, y, z);
 }
 
+vec3 random_unit_vector()
+{
+    return normalize(random_in_unit_sphere());
+}
 
-//--- Scene
-const int SPHERE_COUNT = 2;
+bool near_zero(vec3 v)
+{
+    return ((v.x < 1e-8) && (v.y < 1e-8) && (v.z < 1e-8));
+}
+
+//-------------------------------------------------------------------------
+//---------------Structures------------------------------------------------
+//-------------------------------------------------------------------------
 
 struct sphere {
-    vec3 center;
-    float radius;
+    vec3 center; float radius;
+    int material_type; vec3 albedo; // material
 };
+
+struct ray {
+    vec3 orig; vec3 dir;
+};
+
+struct hit_record {
+    vec3 p; vec3 normal; float t; bool front_face;
+    int material_type; vec3 albedo; // material
+};
+
+struct camera {
+    vec3 origin; vec3 lower_left_corner; vec3 horizontal; vec3 vertical;
+};
+
+//------------------------------------------------------------------------
+
+
+//--- Material related
+#define LAMBERT 1
+
+bool scatter(ray r_in, hit_record rec, out vec3 atten, out ray scattered)
+{
+    vec3 target = rec.p + rec.normal + random_in_unit_sphere();
+    vec3 scatter_direction = target-rec.p;
+    //vec3 scatter_direction = rec.normal + random_unit_vector(); // doesn't work well...
+
+    if(near_zero(scatter_direction))
+        scatter_direction = rec.normal;
+
+    scattered = ray(rec.p, scatter_direction);
+    atten = rec.albedo;
+    
+    return true;
+}
+
+//--- Scene(sphere) related
+const int SPHERE_COUNT = 2;
 
 sphere sceneList[] = sphere[SPHERE_COUNT](
-sphere(vec3( 0,0,-1), 0.5),
-sphere(vec3( 0,-100.5,-1), 100.0)
+                // origin             radius    material type           albedo
+    sphere(vec3( 0,     0,    -1.0),     0.5,    LAMBERT,    vec3(0.5,    0.5,    0.5)),
+    sphere(vec3( 0,-100.5,    -1.0),   100.0,    LAMBERT,    vec3(0.5,    0.5,    0.5))
 );
 
-//--- Ray & Hit Record
-struct ray {
-    vec3 orig;
-    vec3 dir;
-};
+//--- Ray & Hit Record related
+
 vec3 ray_at(ray r, float t)
 {
     return r.orig + t*r.dir;
 }
 
-struct hit_record {
-    vec3 p;
-    vec3 normal;
-    float t;
-    bool front_face;
-};
 void set_face_normal(out hit_record rec, ray r, vec3 outward_normal)
 {
     rec.front_face = dot(r.dir, outward_normal) < 0.0;
     rec.normal = rec.front_face ? outward_normal : -outward_normal;
 }
 
-//--- Sphere Hit Test
+//--- Ray trace related
 bool hit_sphere(sphere s, ray r, float t_min, float t_max, out hit_record rec) {
     vec3 oc = r.orig - s.center;
     float a = dot(r.dir, r.dir);
@@ -110,11 +149,12 @@ bool hit_sphere(sphere s, ray r, float t_min, float t_max, out hit_record rec) {
     rec.p = ray_at(r, rec.t);
     vec3 outward_normal = (rec.p - s.center)/s.radius;
     set_face_normal(rec, r, outward_normal);
+    rec.material_type = s.material_type;
+    rec.albedo = s.albedo;
 
     return true;
 }
 
-//--- Scene Hit Test
 bool hit_scene(ray r, float t_min, float t_max, out hit_record rec)
 {
     hit_record temp_rec;
@@ -134,8 +174,6 @@ bool hit_scene(ray r, float t_min, float t_max, out hit_record rec)
     return hit_anything;
 }
 
-//---
-
 vec3 ray_color(ray r)
 {
     hit_record rec;
@@ -148,10 +186,14 @@ vec3 ray_color(ray r)
 
         if(is_hit)
         {
-            vec3 target = rec.p + rec.normal + random_in_unit_sphere();
-            //vec3 target = rec.p + rec.normal + vec3(1,0,0);
-            r = ray(rec.p, target-rec.p);
-            color = color * 0.5;
+            // vec3 target = rec.p + rec.normal + random_in_unit_sphere();
+            // r = ray(rec.p, target-rec.p);
+            // color = color * 0.5;
+            vec3 atten_color;
+            ray scattered_ray;
+            scatter(r, rec, atten_color, scattered_ray);
+            color = color * atten_color;
+            r = scattered_ray;
         }
         else
         {
@@ -165,14 +207,7 @@ vec3 ray_color(ray r)
     return color;
 }
 
-//--- Camera
-struct camera {
-    vec3 origin;
-    vec3 lower_left_corner;
-    vec3 horizontal;
-    vec3 vertical;
-};
-
+//--- Camera related
 camera make_camera()
 {
     float aspect_ratio = u_resolution.x / u_resolution.y;
