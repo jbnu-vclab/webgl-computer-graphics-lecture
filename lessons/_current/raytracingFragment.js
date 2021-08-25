@@ -8,8 +8,8 @@ uniform vec2 u_resolution;
 uniform float time;
 
 //--- Parameters
-#define SAMPLES_PER_PIXEL 100
-#define MAX_DEPTH 50
+#define SAMPLES_PER_PIXEL 20
+#define MAX_DEPTH 10
 
 #define PI 3.1415926535
 
