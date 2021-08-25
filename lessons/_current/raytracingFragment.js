@@ -62,7 +62,7 @@ bool near_zero(vec3 v)
 
 struct sphere {
     vec3 center; float radius;
-    int material_type; vec3 albedo; // material
+    int material_type; vec3 albedo; float fuzz; // material
 };
 
 struct ray {
@@ -71,7 +71,7 @@ struct ray {
 
 struct hit_record {
     vec3 p; vec3 normal; float t; bool front_face;
-    int material_type; vec3 albedo; // material
+    int material_type; vec3 albedo; float fuzz; // material
 };
 
 struct camera {
@@ -83,29 +83,49 @@ struct camera {
 
 //--- Material related
 #define LAMBERT 1
+#define METAL 2
+
+vec3 reflect(vec3 v, vec3 n) {
+    return v - 2.0*dot(v,n)*n;
+}
 
 bool scatter(ray r_in, hit_record rec, out vec3 atten, out ray scattered)
 {
-    vec3 target = rec.p + rec.normal + random_in_unit_sphere();
-    vec3 scatter_direction = target-rec.p;
-    //vec3 scatter_direction = rec.normal + random_unit_vector(); // doesn't work well...
+    if(rec.material_type == 2) 
+    {
+        vec3 reflected = reflect(normalize(r_in.dir), rec.normal);
+        scattered = ray(rec.p, reflected + rec.fuzz * random_in_unit_sphere());
+        atten = rec.albedo;
+        return (dot(scattered.dir, rec.normal) > 0.0);
+    }
+    else // Lambertian fallback
+    {
+        vec3 target = rec.p + rec.normal + random_in_unit_sphere();
+        vec3 scatter_direction = target-rec.p;
+        //vec3 scatter_direction = rec.normal + random_unit_vector(); // doesn't work well...
 
-    if(near_zero(scatter_direction))
-        scatter_direction = rec.normal;
+        if(near_zero(scatter_direction))
+            scatter_direction = rec.normal;
 
-    scattered = ray(rec.p, scatter_direction);
-    atten = rec.albedo;
-    
-    return true;
+        scattered = ray(rec.p, scatter_direction);
+        atten = rec.albedo;
+
+        return true;
+    }
+
+    return false;
 }
 
+
 //--- Scene(sphere) related
-const int SPHERE_COUNT = 2;
+const int SPHERE_COUNT = 4;
 
 sphere sceneList[] = sphere[SPHERE_COUNT](
-                // origin             radius    material type           albedo
-    sphere(vec3( 0,     0,    -1.0),     0.5,    LAMBERT,    vec3(0.5,    0.5,    0.5)),
-    sphere(vec3( 0,-100.5,    -1.0),   100.0,    LAMBERT,    vec3(0.5,    0.5,    0.5))
+                  // origin             radius    material type           albedo           fuzzy
+    sphere(vec3(   0,-100.5,    -1.0),   100.0,    LAMBERT,    vec3(0.5,    0.5,    0.5),    0.0), //ground
+    sphere(vec3(   0,     0,    -1.0),     0.5,    LAMBERT,    vec3(0.7,    0.3,    0.3),    0.0), //center
+    sphere(vec3(-1.0,     0,    -1.0),     0.5,      METAL,    vec3(0.8,    0.8,    0.8),    0.3), //left
+    sphere(vec3( 1.0,     0,    -1.0),     0.5,      METAL,    vec3(0.8,    0.6,    0.2),    1.0)  //right
 );
 
 //--- Ray & Hit Record related
@@ -151,6 +171,7 @@ bool hit_sphere(sphere s, ray r, float t_min, float t_max, out hit_record rec) {
     set_face_normal(rec, r, outward_normal);
     rec.material_type = s.material_type;
     rec.albedo = s.albedo;
+    rec.fuzz = s.fuzz;
 
     return true;
 }
@@ -186,14 +207,17 @@ vec3 ray_color(ray r)
 
         if(is_hit)
         {
-            // vec3 target = rec.p + rec.normal + random_in_unit_sphere();
-            // r = ray(rec.p, target-rec.p);
-            // color = color * 0.5;
             vec3 atten_color;
             ray scattered_ray;
-            scatter(r, rec, atten_color, scattered_ray);
-            color = color * atten_color;
-            r = scattered_ray;
+            if(scatter(r, rec, atten_color, scattered_ray))
+            {
+                color = color * atten_color;
+                r = scattered_ray;
+            }
+            else
+            {
+                return vec3(0,0,0);
+            }
         }
         else
         {
