@@ -97,6 +97,13 @@ vec3 refract(vec3 uv, vec3 n, float etai_over_etat) {
     return r_out_perp + r_out_parallel;
 }
 
+float schlick(float cosine, float ref_idx)
+{
+    float r0 = (1.0-ref_idx) / (1.0 + ref_idx);
+    r0 = r0 * r0;
+    return r0 + (1.0-r0)*pow((1.0-cosine), 5.0);
+}
+
 bool scatter(ray r_in, hit_record rec, out vec3 atten, out ray scattered)
 {
     if(rec.material_type == METAL)
@@ -119,7 +126,7 @@ bool scatter(ray r_in, hit_record rec, out vec3 atten, out ray scattered)
         bool cannot_refract = refraction_ratio * sin_theta > 1.0; // Total internal reflection case
         vec3 direction;
 
-        if(cannot_refract)
+        if(cannot_refract || schlick(cos_theta, refraction_ratio) > random())
             direction = reflect(unit_dir, rec.normal);
         else
             direction = refract(unit_dir, rec.normal, refraction_ratio);
@@ -147,13 +154,14 @@ bool scatter(ray r_in, hit_record rec, out vec3 atten, out ray scattered)
 
 
 //--- Scene(sphere) related
-const int SPHERE_COUNT = 4;
+const int SPHERE_COUNT = 5;
 
 sphere sceneList[] = sphere[SPHERE_COUNT](
                   // origin,            radius,   mat type,              albedo,           fuzzy,    ior
     sphere(vec3(   0,-100.5,    -1.0),   100.0,    LAMBERT,    vec3(0.8,    0.8,    0.0),    0.0,    0.0), //ground
     sphere(vec3(   0,     0,    -1.0),     0.5,    LAMBERT,    vec3(0.1,    0.2,    0.5),    0.0,    0.0), //center
     sphere(vec3(-1.0,     0,    -1.0),     0.5, DIELECTRIC,    vec3(0.8,    0.8,    0.8),    0.3,    1.5), //left
+    sphere(vec3(-1.0,     0,    -1.0),    -0.4, DIELECTRIC,    vec3(0.8,    0.8,    0.8),    0.3,    1.5), //left inner
     sphere(vec3( 1.0,     0,    -1.0),     0.5,      METAL,    vec3(0.8,    0.6,    0.2),    1.0,    0.0)  //right
 );
 
