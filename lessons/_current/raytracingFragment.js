@@ -62,7 +62,7 @@ bool near_zero(vec3 v)
 
 struct sphere {
     vec3 center; float radius;
-    int material_type; vec3 albedo; float fuzz; // material
+    int material_type; vec3 albedo; float fuzz; float ior; // material
 };
 
 struct ray {
@@ -71,7 +71,7 @@ struct ray {
 
 struct hit_record {
     vec3 p; vec3 normal; float t; bool front_face;
-    int material_type; vec3 albedo; float fuzz; // material
+    int material_type; vec3 albedo; float fuzz; float ior; // material
 };
 
 struct camera {
@@ -84,19 +84,39 @@ struct camera {
 //--- Material related
 #define LAMBERT 1
 #define METAL 2
+#define DIELECTRIC 3
 
 vec3 reflect(vec3 v, vec3 n) {
     return v - 2.0*dot(v,n)*n;
 }
 
+vec3 refract(vec3 uv, vec3 n, float etai_over_etat) {
+    float cos_theta = min(dot(-uv, n), 1.0);
+    vec3 r_out_perp =  etai_over_etat * (uv + cos_theta*n);
+    vec3 r_out_parallel = -sqrt(abs(1.0 - dot(r_out_perp,r_out_perp))) * n;
+    return r_out_perp + r_out_parallel;
+}
+
 bool scatter(ray r_in, hit_record rec, out vec3 atten, out ray scattered)
 {
-    if(rec.material_type == 2) 
+    if(rec.material_type == METAL)
     {
         vec3 reflected = reflect(normalize(r_in.dir), rec.normal);
         scattered = ray(rec.p, reflected + rec.fuzz * random_in_unit_sphere());
         atten = rec.albedo;
         return (dot(scattered.dir, rec.normal) > 0.0);
+    }
+    else if (rec.material_type == DIELECTRIC)
+    {
+        atten = vec3(1.0,1.0,1.0);
+        
+        float refraction_ratio = rec.front_face ? (1.0/rec.ior) : rec.ior;
+
+        vec3 unit_dir = normalize(r_in.dir);
+        vec3 refracted = refract(unit_dir, rec.normal, refraction_ratio);
+
+        scattered = ray(rec.p, refracted);
+        return true;
     }
     else // Lambertian fallback
     {
@@ -113,7 +133,7 @@ bool scatter(ray r_in, hit_record rec, out vec3 atten, out ray scattered)
         return true;
     }
 
-    return false;
+    return true;
 }
 
 
@@ -121,11 +141,11 @@ bool scatter(ray r_in, hit_record rec, out vec3 atten, out ray scattered)
 const int SPHERE_COUNT = 4;
 
 sphere sceneList[] = sphere[SPHERE_COUNT](
-                  // origin             radius    material type           albedo           fuzzy
-    sphere(vec3(   0,-100.5,    -1.0),   100.0,    LAMBERT,    vec3(0.5,    0.5,    0.5),    0.0), //ground
-    sphere(vec3(   0,     0,    -1.0),     0.5,    LAMBERT,    vec3(0.7,    0.3,    0.3),    0.0), //center
-    sphere(vec3(-1.0,     0,    -1.0),     0.5,      METAL,    vec3(0.8,    0.8,    0.8),    0.3), //left
-    sphere(vec3( 1.0,     0,    -1.0),     0.5,      METAL,    vec3(0.8,    0.6,    0.2),    1.0)  //right
+                  // origin,            radius,   mat type,              albedo,           fuzzy,    ior
+    sphere(vec3(   0,-100.5,    -1.0),   100.0,    LAMBERT,    vec3(0.8,    0.8,    0.0),    0.0,    0.0), //ground
+    sphere(vec3(   0,     0,    -1.0),     0.5, DIELECTRIC,    vec3(0.7,    0.3,    0.3),    0.0,    1.5), //center
+    sphere(vec3(-1.0,     0,    -1.0),     0.5, DIELECTRIC,    vec3(0.8,    0.8,    0.8),    0.3,    1.5), //left
+    sphere(vec3( 1.0,     0,    -1.0),     0.5,      METAL,    vec3(0.8,    0.6,    0.2),    1.0,    0.0)  //right
 );
 
 //--- Ray & Hit Record related
@@ -172,6 +192,7 @@ bool hit_sphere(sphere s, ray r, float t_min, float t_max, out hit_record rec) {
     rec.material_type = s.material_type;
     rec.albedo = s.albedo;
     rec.fuzz = s.fuzz;
+    rec.ior = s.ior; // 잊어버리지 말것!!
 
     return true;
 }
