@@ -270,10 +270,16 @@ vec3 ray_color(ray r)
 }
 
 //--- Camera related
+
+uniform float u_fov;
+
 camera make_camera()
 {
     float aspect_ratio = u_resolution.x / u_resolution.y;
-    float viewport_height = 2.0;
+    float theta = u_fov * PI / 180.0;
+    float h = tan(theta / 2.0);
+
+    float viewport_height = 2.0 * h;
     float viewport_width = aspect_ratio * viewport_height;
     float focal_length = 1.0;
 

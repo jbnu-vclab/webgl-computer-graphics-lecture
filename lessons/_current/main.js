@@ -49,6 +49,13 @@ function main() {
     let resolutionLocation = gl.getUniformLocation(shader.id, "u_resolution");
     let timeLocation = gl.getUniformLocation(shader.id, "time");
     let timerStart = Date.now();
+    let camFovLoation = gl.getUniformLocation(shader.id, "u_fov");
+
+    //--------------------UI Setting---------------------//
+    webglLessonsUI.setupSlider("#camera-fov", {slide: updateCameraFov, min: 10, max: 120, step: 10, value: 90});
+    
+    let camFov = 90;
+    //---------------------------------------------------//
 
     drawScene();
 
@@ -64,6 +71,7 @@ function main() {
 
         gl.uniform2f(resolutionLocation, gl.canvas.width, gl.canvas.height);
         gl.uniform1f(timeLocation, Date.now() - timerStart);
+        gl.uniform1f(camFovLoation, camFov);
 
         gl.clearColor(0, 0, 0, 0);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
@@ -73,6 +81,13 @@ function main() {
         //---3. 사각형 관련 state 비활성화. 
         gl.bindVertexArray(null);
         gl.useProgram(null);
+
+    }
+    //slider의 값이 변할 때마다 호출되는 함수
+    function updateCameraFov(event, ui)
+    {
+        camFov = ui.value;
+        drawScene();
     }
 }
 main();
