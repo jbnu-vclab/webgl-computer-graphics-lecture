@@ -113,9 +113,18 @@ bool scatter(ray r_in, hit_record rec, out vec3 atten, out ray scattered)
         float refraction_ratio = rec.front_face ? (1.0/rec.ior) : rec.ior;
 
         vec3 unit_dir = normalize(r_in.dir);
-        vec3 refracted = refract(unit_dir, rec.normal, refraction_ratio);
+        float cos_theta = min(dot(-unit_dir, rec.normal), 1.0);
+        float sin_theta = sqrt(1.0 - cos_theta*cos_theta);
 
-        scattered = ray(rec.p, refracted);
+        bool cannot_refract = refraction_ratio * sin_theta > 1.0; // Total internal reflection case
+        vec3 direction;
+
+        if(cannot_refract)
+            direction = reflect(unit_dir, rec.normal);
+        else
+            direction = refract(unit_dir, rec.normal, refraction_ratio);
+
+        scattered = ray(rec.p, direction);
         return true;
     }
     else // Lambertian fallback
@@ -143,7 +152,7 @@ const int SPHERE_COUNT = 4;
 sphere sceneList[] = sphere[SPHERE_COUNT](
                   // origin,            radius,   mat type,              albedo,           fuzzy,    ior
     sphere(vec3(   0,-100.5,    -1.0),   100.0,    LAMBERT,    vec3(0.8,    0.8,    0.0),    0.0,    0.0), //ground
-    sphere(vec3(   0,     0,    -1.0),     0.5, DIELECTRIC,    vec3(0.7,    0.3,    0.3),    0.0,    1.5), //center
+    sphere(vec3(   0,     0,    -1.0),     0.5,    LAMBERT,    vec3(0.1,    0.2,    0.5),    0.0,    0.0), //center
     sphere(vec3(-1.0,     0,    -1.0),     0.5, DIELECTRIC,    vec3(0.8,    0.8,    0.8),    0.3,    1.5), //left
     sphere(vec3( 1.0,     0,    -1.0),     0.5,      METAL,    vec3(0.8,    0.6,    0.2),    1.0,    0.0)  //right
 );
