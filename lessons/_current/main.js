@@ -11,6 +11,8 @@ import VertexArray  from '../_classes/VertexArray.js';
 import raytracingVertex from './raytracingVertex.js';
 import raytracingFragment from './raytracingFragment.js';
 
+const {mat2, mat3, mat4, vec2, vec3, vec4} = glMatrix;
+
 function main() {
     // Get A WebGL context
     var canvas = document.querySelector("#c");
@@ -55,10 +57,16 @@ function main() {
     let camLookAtLocation = gl.getUniformLocation(shader.id, "u_lookat");
     let camVUpLocation = gl.getUniformLocation(shader.id, "u_vup");
 
+    let camApertureLocation = gl.getUniformLocation(shader.id, "u_aperture");
+    let camFocusDistLocation = gl.getUniformLocation(shader.id, "u_focus_dist");
+    
+
     //--------------------UI Setting---------------------//
     webglLessonsUI.setupSlider("#camera-fov", {slide: updateCameraFov, min: 10, max: 120, step: 10, value: 90});
     
     let camFov = 90;
+    let lookFrom = [-2.0, 2.0, 1.0];
+    let lookAt = [0.0, 0.0, -1.0];
     //---------------------------------------------------//
 
     drawScene();
@@ -77,9 +85,15 @@ function main() {
         gl.uniform1f(timeLocation, Date.now() - timerStart);
         gl.uniform1f(camFovLoation, camFov);
 
-        gl.uniform3f(camLookFromLocation, -2.0, 2.0, 1.0);
-        gl.uniform3f(camLookAtLocation, 0.0, 0.0, -1.0);
+        
+        gl.uniform3f(camLookFromLocation, lookFrom[0], lookFrom[1], lookFrom[2]);
+        gl.uniform3f(camLookAtLocation, lookAt[0], lookAt[1], lookAt[2]);
         gl.uniform3f(camVUpLocation, 0.0, 1.0, 0.0);
+
+        let fromto = vec3.create();
+        vec3.sub(fromto, lookFrom, lookAt);
+        gl.uniform1f(camFocusDistLocation, vec3.length(fromto));
+        gl.uniform1f(camApertureLocation, 2.0);
 
         gl.clearColor(0, 0, 0, 0);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);

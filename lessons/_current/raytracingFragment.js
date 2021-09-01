@@ -46,6 +46,12 @@ vec3 random_in_unit_sphere()
     return vec3(x, y, z);
 }
 
+vec3 random_in_unit_disk()
+{
+    vec3 r = random_in_unit_sphere();
+    return vec3(r.x, r.y, 0.0);
+}
+
 vec3 random_unit_vector()
 {
     return normalize(random_in_unit_sphere());
@@ -75,7 +81,7 @@ struct hit_record {
 };
 
 struct camera {
-    vec3 origin; vec3 lower_left_corner; vec3 horizontal; vec3 vertical;
+    vec3 origin; vec3 lower_left_corner; vec3 horizontal; vec3 vertical; float lens_radius;
 };
 
 //------------------------------------------------------------------------
@@ -275,6 +281,8 @@ uniform float u_fov;
 uniform vec3 u_lookfrom;
 uniform vec3 u_lookat;
 uniform vec3 u_vup;
+uniform float u_aperture;
+uniform float u_focus_dist;
 
 camera make_camera()
 {
@@ -291,15 +299,19 @@ camera make_camera()
 
     camera cam;
     cam.origin = u_lookfrom;
-    cam.horizontal = viewport_width * u;
-    cam.vertical = viewport_height * v;
-    cam.lower_left_corner = cam.origin - cam.horizontal*0.5 - cam.vertical*0.5 - w;
+    cam.horizontal = u_focus_dist * viewport_width * u;
+    cam.vertical = u_focus_dist * viewport_height * v;
+    cam.lower_left_corner = cam.origin - cam.horizontal*0.5 - cam.vertical*0.5 - u_focus_dist * w;
+    cam.lens_radius = u_aperture / 2.0;
     return cam;
 }
 
 ray get_ray(camera cam, float u, float v)
 {
-    return ray(cam.origin, cam.lower_left_corner + u*cam.horizontal + v*cam.vertical - cam.origin);
+    vec3 rd = cam.lens_radius * random_in_unit_disk();
+    vec3 offset = vec3(u * rd.x , v * rd.y, 0.0);
+
+    return ray(cam.origin + offset, cam.lower_left_corner + u*cam.horizontal + v*cam.vertical - cam.origin - offset);
 }
 
 void main() {
