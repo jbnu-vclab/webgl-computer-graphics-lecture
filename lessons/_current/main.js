@@ -62,11 +62,13 @@ function main() {
     
 
     //--------------------UI Setting---------------------//
-    webglLessonsUI.setupSlider("#camera-fov", {slide: updateCameraFov, min: 10, max: 120, step: 10, value: 90});
+    webglLessonsUI.setupSlider("#camera-fov", {slide: updateCameraFov, min: 10, max: 120, step: 10, value: 20});
     
-    let camFov = 90;
-    let lookFrom = [-2.0, 2.0, 1.0];
-    let lookAt = [0.0, 0.0, -1.0];
+    let camFov = 20;
+    let lookFrom = [13.0, 2.0, 3.0];
+    let lookAt = [0.0, 0.0, 0.0];
+    let distToFocus = 10.0;
+    let aperture = 0.1;
     //---------------------------------------------------//
 
     drawScene();
@@ -90,10 +92,8 @@ function main() {
         gl.uniform3f(camLookAtLocation, lookAt[0], lookAt[1], lookAt[2]);
         gl.uniform3f(camVUpLocation, 0.0, 1.0, 0.0);
 
-        let fromto = vec3.create();
-        vec3.sub(fromto, lookFrom, lookAt);
-        gl.uniform1f(camFocusDistLocation, vec3.length(fromto));
-        gl.uniform1f(camApertureLocation, 2.0);
+        gl.uniform1f(camFocusDistLocation, distToFocus);
+        gl.uniform1f(camApertureLocation, aperture);
 
         gl.clearColor(0, 0, 0, 0);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
