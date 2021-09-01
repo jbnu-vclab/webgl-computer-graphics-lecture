@@ -49,7 +49,11 @@ function main() {
     let resolutionLocation = gl.getUniformLocation(shader.id, "u_resolution");
     let timeLocation = gl.getUniformLocation(shader.id, "time");
     let timerStart = Date.now();
+    
     let camFovLoation = gl.getUniformLocation(shader.id, "u_fov");
+    let camLookFromLocation = gl.getUniformLocation(shader.id, "u_lookfrom");
+    let camLookAtLocation = gl.getUniformLocation(shader.id, "u_lookat");
+    let camVUpLocation = gl.getUniformLocation(shader.id, "u_vup");
 
     //--------------------UI Setting---------------------//
     webglLessonsUI.setupSlider("#camera-fov", {slide: updateCameraFov, min: 10, max: 120, step: 10, value: 90});
@@ -72,6 +76,10 @@ function main() {
         gl.uniform2f(resolutionLocation, gl.canvas.width, gl.canvas.height);
         gl.uniform1f(timeLocation, Date.now() - timerStart);
         gl.uniform1f(camFovLoation, camFov);
+
+        gl.uniform3f(camLookFromLocation, -2.0, 2.0, 1.0);
+        gl.uniform3f(camLookAtLocation, 0.0, 0.0, -1.0);
+        gl.uniform3f(camVUpLocation, 0.0, 1.0, 0.0);
 
         gl.clearColor(0, 0, 0, 0);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);

@@ -272,6 +272,9 @@ vec3 ray_color(ray r)
 //--- Camera related
 
 uniform float u_fov;
+uniform vec3 u_lookfrom;
+uniform vec3 u_lookat;
+uniform vec3 u_vup;
 
 camera make_camera()
 {
@@ -281,13 +284,16 @@ camera make_camera()
 
     float viewport_height = 2.0 * h;
     float viewport_width = aspect_ratio * viewport_height;
-    float focal_length = 1.0;
+    
+    vec3 w = normalize(u_lookfrom - u_lookat);
+    vec3 u = normalize(cross(u_vup,w));
+    vec3 v = cross(w,u);
 
     camera cam;
-    cam.origin = vec3(0,0,0);
-    cam.horizontal = vec3(viewport_width, 0, 0);
-    cam.vertical = vec3(0, viewport_height, 0);
-    cam.lower_left_corner = cam.origin - cam.horizontal*0.5 - cam.vertical*0.5 - vec3(0,0,focal_length);
+    cam.origin = u_lookfrom;
+    cam.horizontal = viewport_width * u;
+    cam.vertical = viewport_height * v;
+    cam.lower_left_corner = cam.origin - cam.horizontal*0.5 - cam.vertical*0.5 - w;
     return cam;
 }
 
