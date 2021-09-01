@@ -6,6 +6,7 @@ import Shader  from '../_classes/Shader.js';
 import VertexBuffer from '../_classes/VertexBuffer.js';
 import IndexBuffer from '../_classes/IndexBuffer.js';
 import VertexArray  from '../_classes/VertexArray.js';
+import OrbitCamera from '../_classes/OrbitCamera.js'
 
 //Shaders
 import raytracingVertex from './raytracingVertex.js';
@@ -43,7 +44,7 @@ function main() {
     let rectangleIB = new IndexBuffer(gl, rectangleIndices, 6);
 
     let shader = new Shader(gl,raytracingVertex,raytracingFragment);
-    
+
     //---Renderer Initialize
     let renderer = new Renderer();
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
@@ -61,21 +62,31 @@ function main() {
     let camFocusDistLocation = gl.getUniformLocation(shader.id, "u_focus_dist");
     
 
-    //--------------------UI Setting---------------------//
-    webglLessonsUI.setupSlider("#camera-fov", {slide: updateCameraFov, min: 10, max: 120, step: 10, value: 20});
-    
+    //--------------------Camera Setting---------------------//
+    webglLessonsUI.setupSlider("#camera-yaw", {slide: updateCameraYaw, min: -180, max: 180, step: 0.1});
+    webglLessonsUI.setupSlider("#camera-pitch", {slide: updateCameraPitch, min: -90, max: 90, step: 0.1});
+    webglLessonsUI.setupSlider("#camera-distance", {slide: updateCameraDistance, min: 0, max: 100, step: 0.1});
+
     let camFov = 20;
-    let lookFrom = [13.0, 2.0, 3.0];
-    let lookAt = [0.0, 0.0, 0.0];
     let distToFocus = 10.0;
     let aperture = 0.1;
+
+    let lookFrom = [13.0, 2.0, 5.0];
+    let lookAt = [0.0, 0.0, 0.0];
+    let up = [0.0, 1.0, 0.0];
+    let yaw = -90.0;
+    let pitch = -45.0;
+    let distance = 5.0;
+    let turnspeed = 10.0;
+    let mainCamera = new OrbitCamera(lookFrom,lookAt,up,yaw,pitch,distance,turnspeed);
     //---------------------------------------------------//
 
-    drawScene();
+    requestAnimationFrame(drawScene);
 
     //화면을 새로 그리기 위한 명령어들을 모아 함수로 구현하였음
     function drawScene()
     {
+        timerStart = Date.now();
         //화면 크기 재조정
         webglUtils.resizeCanvasToDisplaySize(gl.canvas);
         gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
@@ -84,12 +95,12 @@ function main() {
         shader.Bind(gl);
 
         gl.uniform2f(resolutionLocation, gl.canvas.width, gl.canvas.height);
-        gl.uniform1f(timeLocation, Date.now() - timerStart);
+        gl.uniform1f(timeLocation, 10.0); // fix the seed
         gl.uniform1f(camFovLoation, camFov);
 
         
-        gl.uniform3f(camLookFromLocation, lookFrom[0], lookFrom[1], lookFrom[2]);
-        gl.uniform3f(camLookAtLocation, lookAt[0], lookAt[1], lookAt[2]);
+        gl.uniform3f(camLookFromLocation, mainCamera.eye[0], mainCamera.eye[1], mainCamera.eye[2]);
+        gl.uniform3f(camLookAtLocation, mainCamera.front[0], mainCamera.front[1], mainCamera.front[2]);
         gl.uniform3f(camVUpLocation, 0.0, 1.0, 0.0);
 
         gl.uniform1f(camFocusDistLocation, distToFocus);
@@ -104,12 +115,25 @@ function main() {
         gl.bindVertexArray(null);
         gl.useProgram(null);
 
+        requestAnimationFrame(drawScene)
+
     }
+
     //slider의 값이 변할 때마다 호출되는 함수
-    function updateCameraFov(event, ui)
+    function updateCameraYaw(event, ui)
     {
-        camFov = ui.value;
-        drawScene();
+        mainCamera.yaw = ui.value;
+        mainCamera.Update();
+    }
+    function updateCameraPitch(event, ui)
+    {
+        mainCamera.pitch = ui.value;
+        mainCamera.Update();
+    }
+    function updateCameraDistance(event, ui)
+    {
+        mainCamera.distance = ui.value;
+        mainCamera.Update();
     }
 }
 main();
