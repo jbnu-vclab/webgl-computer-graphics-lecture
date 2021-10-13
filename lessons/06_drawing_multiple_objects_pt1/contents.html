@@ -120,7 +120,7 @@ function main() {
   //이 상태에서 bufferData()등을 통해 삼각형 데이터를 집어넣으면 기존 사각형 데이터가 대체된다는 것에 유의하자.
   //따라서 먼저 buffer 및 프로그램들을 비활성화 한 뒤에 삼각형을 그리기 위한 준비 작업을 해야 한다.
   
-  //--비활성화 작업. null로 bindind하면 비활성화 된다.
+  //--비활성화 작업. null로 binding하면 비활성화 된다.
   gl.bindBuffer(gl.ARRAY_BUFFER,null);
   gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,null);
   gl.useProgram(null);
