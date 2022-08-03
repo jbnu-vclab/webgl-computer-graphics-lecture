@@ -34,7 +34,7 @@
 - [20. Shadow Mapping (First Try)](#20-shadow-mapping-first-try)
 - [21. Shadow Mapping (Add Bias)](#21-shadow-mapping-add-bias)
 - [22. Shadow Mapping (PCF)](#22-shadow-mapping-pcf)
-- [23. Epilogue](#23-epilogue)
+- [Epilogue](#epilogue)
 
 ---
 
@@ -447,7 +447,7 @@
 
 ---
 
-## [23. Epilogue](./23_epilogue/README.md) 
+## [Epilogue](./epilogue/README.md) 
 
 - 배운 내용들을 정리하고, 유용한 참고 자료들을 소개합니다.
 
