@@ -34,6 +34,7 @@
 - [20. Shadow Mapping (First Try)](#20-shadow-mapping-first-try)
 - [21. Shadow Mapping (Add Bias)](#21-shadow-mapping-add-bias)
 - [22. Shadow Mapping (PCF)](#22-shadow-mapping-pcf)
+- [23. PBR(Physicall based Rendering)](#23-pbr)
 - [Epilogue](#epilogue)
 
 ---
@@ -440,6 +441,23 @@
 
 - 깊이맵의 에일리어싱으로 인한 또다른 문제와 soft shadow의 필요성에 대해 설명합니다.
 - PCF(Percentage Closer Filtering) 알고리즘과 구현 방법을 설명합니다.
+
+<div align="right">
+    <b><a href="#table-of-contents">↥ back to top</a></b>
+</div>
+
+---
+
+## [23. PBR(Physically based Rendering)](./23_PBR/README.md)
+
+<p align="center">
+<a href="http://localhost:8080/lessons/23_PBR/contents.html">
+<img src="./imgs/toc/23_pbr_result.png" width="256"></a>
+<p align="center"> UI Slider를 통한 인터랙션 </p>
+</p>
+
+- 컴퓨터 그래픽스 분야의 최신 이론인 PBR에 대해 개략적으로 알아 봅니다.
+- 직접 조명에 대해 Reflectance equation을 근사적으로 계산하는 법을 코드를 통해 알아봅니다.
 
 <div align="right">
     <b><a href="#table-of-contents">↥ back to top</a></b>

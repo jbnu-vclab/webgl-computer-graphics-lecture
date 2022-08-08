@@ -69,7 +69,7 @@
     * 상속으로 Light와 Directional Light를 구현했습니다. Specular 관련 데이터는 Material 에 넣었고 Light에 넣지 않았습니다. 이유를 복기해 보세요.
 
 ---
-19~20까지는 Shadow Mapping 기법을 활용한 그림자 생성 기법을 배웠습니다.
+19~22까지는 Shadow Mapping 기법을 활용한 그림자 생성 기법을 배웠습니다.
 
 - [19. Depth Map]
     * 프레임버퍼(FBO)의 개념을 잘 기억해 두세요. 색상+깊이+(스텐실) 데이터를 포함하며, 그리기의 대상으로 선택할 수 있습니다. 
@@ -82,7 +82,14 @@
     * varying의 경우 필요하다면 perspective division을 직접 해줘야 합니다.
     * 에일리어싱 문제로 Shadow Acne가 발생합니다. Bias를 `d`에서 빼서 해결합니다.
     * 부드러운 그림자를 위해 주변 `z`값들과 비교를 통해 얼마나 그림자가 지는지 비율을 계산해 사용하는 PCF 기법을 사용할 수 있습니다. 
+---
+2022년에 추가된 23에서는 PBR을 설명하였습니다. 강의 내용을 잘 이해하셨다면 코드 자체는 어려운 것이 없으실 겁니다. 이론이 좀 더 어렵죠.
 
+- [23. PBR(Physically based Rendering)]
+    * PBR은 미세면 모델의 사용, 에너지 보존법칙의 준수, 물리기반 BRDF의 사용 세 가지 조건을 만족하는 렌더링 방식을 일컫는 용어입니다.
+    * PBR의 기반이 되는 Reflectance Equation에 존재하는 적분 계산을 점 조명에 대해서라면 각 조명 radiance의 합으로 계산할 수 있습니다.
+    * Cook-Torrance BRDF 중, Specular BRDF항은 강의 자료에 적혀있는 식들을 그대로 코드로 구현하기만 하면 사용할 수 있었습니다.
+    * 점 조명과 같은 직접 조명이 아닌 경우에는 조금 더 복잡한 계산과 추가적인 데이터가 필요한데 이는 강의 자료에서 생략하였습니다.
 
 ---
 
@@ -92,7 +99,7 @@
 
 ## 0. Computer vision & deep learning
 
-컴퓨터 그래픽스는 가상의 이미지를 만들어내는 기술이고, 컴퓨터 비전은 실제 이미지를 해석하는 기술입니다. 컴퓨터 그래픽스와 컴퓨터 비전 기술은 그 이론과 응용에서 모두 굉장히 밀접한 관련되어 있습니다. 컴퓨터 비전(과 딥러닝) 기술을 배운다면 양쪽에서 배운 내용이 시너지를 일으킬 수 있고, 스스로 멋진 아이디어도 떠올리실 수 있을 거라고 확신합니다.
+컴퓨터 그래픽스는 가상의 이미지를 만들어내는 기술이고, 컴퓨터 비전은 물리적인 세계에서 수집한 이미지(실제 세계에서 찍은 사진)를 컴퓨터가 이해할 수 있도록 만들어주는 기술입니다. 컴퓨터 그래픽스와 컴퓨터 비전 기술은 그 이론과 응용에서 모두 굉장히 밀접한 관련되어 있습니다. 컴퓨터 비전(과 딥러닝) 기술을 배운다면 양쪽에서 배운 내용이 시너지를 일으킬 수 있고, 스스로 멋진 아이디어도 떠올리실 수 있을 거라고 확신합니다.
 
 관심이 있으시다면 컴퓨터 비전 강의도 꼭 들으시길 추천 드립니다.
 
@@ -106,7 +113,7 @@
 
 - [(Textbook) GPU Gems](https://developer.nvidia.com/gpugems/gpugems3/foreword): 위와 비슷하지만 좀 더 좁은 주제에 대해 다루는 것 같습니다. 프린트된 책도 있고, 온라인에서도 무료로 볼 수 있습니다. 저도 이번학기 강의 준비하면서 참고자료로 찾다 알게 되었는데 내용이 잘 정리되어 있어서 천천히 볼 생각입니다.
 
-- [(Textbooks) 물리 기반 렌더링](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9788960777620&orderClick=LAG&Kc=): Specular term 부분에서 잠깐 언급한 PBR관련 이론과 구현을 설명한 교재입니다.
+- [(Textbooks) 물리 기반 렌더링](http://www.kyobobook.co.kr/product/detailViewKor.laf?ejkGb=KOR&mallGb=KOR&barcode=9788960777620&orderClick=LAG&Kc=): PBR관련 이론과 구현을 설명한 교재입니다.
 
 ## 2. 게임 개발
 
@@ -124,7 +131,7 @@
 
 - [(Website) Shader Tutorial by Ronja](https://www.ronja-tutorials.com/): Unity의 셰이더 시스템 관련해서는 이 사이트의 자료가 가장 이해하기 쉽게 구성되어 있었습니다.
 
-- [(Website) GameDev.tv](https://www.gamedev.tv/): 유료긴 하지만, 그에 걸맞게 강의들을 제공해 주고 있습니다. 특히 저같은 경우 Unreal Engine을 처음 접할 때 유용하게 사용했습니다.
+- [(Website) GameDev.tv](https://www.gamedev.tv/): 유료긴 하지만, 그에 걸맞는 수준의 강의들을 제공해 주고 있습니다. 특히 저같은 경우 Unreal Engine을 처음 접할 때 유용하게 사용했습니다.
 
 ## 3. 게임 엔진 개발
 
