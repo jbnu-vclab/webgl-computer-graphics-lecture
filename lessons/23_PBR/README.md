@@ -21,7 +21,7 @@ Cook-Torrance BRDF를 제외하고, 수식 계산을 위해서는 아래와 같�
 
 코드를 보기에 앞서서 먼저 개념부터 살펴보고 가겠습니다.
 
-아래 그림은 강의 자료에서 설명한 Reflectance Equation을 점 광원 하나에 대한 그림으로 약간 바꿔서 그린 것입니다. 우리는 지금 점 $p$로부터 그 점의 관찰 방향인 $w_o$ 방향으로의 radiance($L_o$)를 계산해야 합니다. 그 radiance가 바로 점 $p$가 속해있는 프래그먼트의 픽셀 색상이 됩니다.
+아래 그림은 강의 자료에서 설명한 Reflectance Equation을 점 광원 하나에 대한 그림으로 약간 바꿔서 그린 것입니다. 우리는 지금 점 $p$로부터 그 점의 관찰 방향인 $w_o$ 방향으로의 radiance( $L_o$ )를 계산해야 합니다. 그 radiance가 바로 점 $p$가 속해있는 프래그먼트의 픽셀 색상이 됩니다.
 
 이러한 radiance를 계산하려면 점 $p$로 들어오는 모든 빛에 대해 위 수식을 적용하는 것이 필요합니다. 수식을 보면 적분 구간이 $\Omega$인데 이것은 점 $p$와 그 법선 벡터 $n$으로부터 정의된 반구입니다. 이 반구로 들어와 $p$에 닿는 모든 빛(irradiance, $L_i$들의 가중합)이 $L_o$에 영향을 줄 것입니다.
 
@@ -102,7 +102,7 @@ $L_o(p,w_o) = \displaystyle\sum_{i=1}^{2} (k_d)\dfrac{c}{\pi} + \dfrac{DFG}{4(w_
     `;
     ```
 
-    바뀐것이 없습니다. 각 프래그먼트의 월드공간 위치를 저장하는 worldPosition varying을 프래그먼트 셰이더로 넘기고 있는데, 이 부분도 이미 전에 사용해봤던 내용이죠.
+    바뀐것이 없습니다. 각 프래그먼트의 월드공간 위치를 저장하는 `worldPosition` varying을 프래그먼트 셰이더로 넘기고 있는데, 이 부분도 이미 전에 사용해봤던 내용이죠.
 
 3. [`_shaders/PBRShaderFragment.js`] PBR Fragment Shader, Material 파라메터와 조명
     
@@ -143,7 +143,7 @@ $L_o(p,w_o) = \displaystyle\sum_{i=1}^{2} (k_d)\dfrac{c}{\pi} + \dfrac{DFG}{4(w_
     }
     ```
 
-    - G 함수는 Smith-Schlick GGX 근사식이고 미세면 표면의 정렬에 따른 그림자 현상을 모사합니다. 표면이 거칠수록 그림자가 많이 발생하는데, 시점의 높이 따라 발생하는 Geometry Obstruction과 빛이 탈출하지 못해 발생하는 Geometry Shadowing 두 개의 팩터가 존재합니다. 아래 코드에서와 같이 Geometry Obstruction은 N,V를 입력으로, Geometry Shadowing은 N,L을 입력으로 SchlickGGX를 통해 계산하며 두 결과값을 곱한 것이 최종 G함수의 출력이 됩니다.
+    - G 함수는 Smith-Schlick GGX 근사식이고 미세면 표면의 정렬에 따른 그림자 현상을 모사합니다. 표면이 거칠수록 그림자가 많이 발생하는데, 시점의 높이 따라 발생하는 Geometry Obstruction과 빛이 탈출하지 못해 발생하는 Geometry Shadowing 두 개의 팩터가 존재합니다. 아래 코드에서와 같이 Geometry Obstruction은 `N`, `V`를 입력으로, Geometry Shadowing은 `N`, `L`을 입력으로 SchlickGGX를 통해 계산하며 두 결과값을 곱한 것이 최종 G함수의 출력이 됩니다.
 
     ```glsl
     float GeometrySchlickGGX (float NdotV, float roughness){
@@ -158,7 +158,7 @@ $L_o(p,w_o) = \displaystyle\sum_{i=1}^{2} (k_d)\dfrac{c}{\pi} + \dfrac{DFG}{4(w_
     }
     ```
 
-    - F 함수는 Fresnel-Schlick 근사식이고 물체의 표면을 어느 각도로 바라보느냐에 따른 반사량을 계산합니다. F0값은 물체의 고유 반사도(물체를 똑바로 바라보았을때의 반사도)이며 `cosTheta`=$h \cdot v$입니다. 물체를 비스듬히 바라볼수록 반사가 더 많이 되며, 똑바로 바라보면 반사량이 적습니다. 또한 이 계산값이 에너지 보존법칙에서 반사되는 빛의 비율을 계산하는데 사용됩니다. (1-반사량 = 굴절량)
+    - F 함수는 Fresnel-Schlick 근사식이고 물체의 표면을 어느 각도로 바라보느냐에 따른 반사량을 계산합니다. F0값은 물체의 고유 반사도(물체를 똑바로 바라보았을때의 반사도)이며 `cosTheta`= $h \cdot v$ 입니다. 물체를 비스듬히 바라볼수록 반사가 더 많이 되며, 똑바로 바라보면 반사량이 적습니다. 또한 이 계산값이 에너지 보존법칙에서 반사되는 빛의 비율을 계산하는데 사용됩니다. (1-반사량 = 굴절량)
 
     ```glsl
     vec3 FresnelSchlick (float cosTheta, vec3 F0){
@@ -183,7 +183,7 @@ $L_o(p,w_o) = \displaystyle\sum_{i=1}^{2} (k_d)\dfrac{c}{\pi} + \dfrac{DFG}{4(w_
         ...
     ```
 
-    다음은 reflectance equation 계산의 첫 부분입니다. 우선 장면에 4개의 조명이 있으니 각 조명에 대해 순회하며 계산을 한다는 것을 잊지 마시고요. ($L_1$~$L_4$에 대해 각각 radiance를 계산하여 더함) `L`과 `H`를 계산해 두고, 점 조명의 거리에 따른 감쇄(attenuation)를 곱해 점 p에 도달할 시점의 radiance를 구해둡니다. (여기에 `NdotL`을 곱해야 정확한 radiant intensity가 됩니다.)
+    다음은 reflectance equation 계산의 첫 부분입니다. 우선 장면에 4개의 조명이 있으니 각 조명에 대해 순회하며 계산을 한다는 것을 잊지 마시고요. ( $L_1$ ~ $L_4$ 에 대해 각각 radiance를 계산하여 더함) `L`과 `H`를 계산해 두고, 점 조명의 거리에 따른 감쇄(attenuation)를 곱해 점 p에 도달할 시점의 radiance를 구해둡니다. (여기에 `NdotL`을 곱해야 정확한 radiant intensity값이 됩니다.)
 
     ```glsl
     for(int i = 0; i < 4; ++i) 
@@ -197,7 +197,7 @@ $L_o(p,w_o) = \displaystyle\sum_{i=1}^{2} (k_d)\dfrac{c}{\pi} + \dfrac{DFG}{4(w_
         ...
     ```
 
-    그 뒤 Cook-Torrance BRDF를 계산합니다. DGF를 계산하는 것이고, 위에 정의해 둔 함수를 그냥 사용만 하면 됩니다. 중요한 것은 Frenel인 F가 반사 정도를 계산하는 것이기 때문에 이것이 `kS`($w_o$방향으로 반사되는 빛의 비율)이고, 1에서 `kS`를 뺀 나머지가 `kD`(굴절되는 빛의 비율) 입니다. 마지막으로 재질의 metalness에 따라 `kD`값을 줄여줍니다. 금속인 경우 굴절된 빛은 모두 흡수되는 성질을 모사한 것입니다.
+    그 뒤 Cook-Torrance BRDF를 계산합니다. DGF를 계산하는 것이고, 위에 정의해 둔 함수를 그냥 사용만 하면 됩니다. 중요한 것은 Frenel인 F가 반사 정도를 계산하는 것이기 때문에 이것이 `kS`( $w_o$ 방향으로 반사되는 빛의 비율)이고, 1에서 `kS`를 뺀 나머지가 `kD`(굴절되는 빛의 비율) 입니다. 마지막으로 재질의 metalness에 따라 `kD`값을 줄여줍니다. 금속인 경우 굴절된 빛은 모두 흡수되는 성질을 모사한 것입니다.
 
     ```glsl
         // cook-torrance brdf
@@ -218,7 +218,7 @@ $L_o(p,w_o) = \displaystyle\sum_{i=1}^{2} (k_d)\dfrac{c}{\pi} + \dfrac{DFG}{4(w_
         vec3 specular     = numerator / denominator;  
     ```
 
-    하나의 점조명이 기여하는 radiance를 계산하여 `Lo`에 더해줍니다. 반복문을 4번 돌게되면 4개 점조명이 이 프래그먼트(점 p)에 부딪혀 $w_o$ 방향으로 반사 & 산란되는 radiance의 총 합인 irradiance가 되겠죠?
+    하나의 점조명이 기여하는 radiance를 계산하여 `Lo`에 더해줍니다. 반복문을 4번 돌게되면 4개 점조명이 이 프래그먼트(점 p)에 부딪혀 $w_o$ 방향으로 반사 & 산란되는 out radiance의 총 합이 되겠죠?
 
     `NdotL`은 조명의 입사각에 따른 radiant intensity의 감소량을 계산하기 위한 팩터입니다. `kD`(산란되는 빛의 비율)와 Albedo(물체의 고유 색상 또는 고유 반사도)를 곱해서 산란 색상이 계산되고 `PI`로 나누어 정규화합니다. 그리고 specular 색상을 더합니다. 이후 `radiance`와 `NdotL`을 곱해 최종적으로 (단일 조명의) radiance가 계산됩니다.
 
@@ -232,14 +232,14 @@ $L_o(p,w_o) = \displaystyle\sum_{i=1}^{2} (k_d)\dfrac{c}{\pi} + \dfrac{DFG}{4(w_
     
     이제 몇 가지 처리만 해 주면 끝납니다.
 
-    우선 지금까지 ambient term에 대해서는 전혀 이야기하지 않았는데요, ambient도 빼먹으면 안됩니다. 사실 완전한 PBR을 위해서는 ambient에 환경 조명 효과를 더해야 하는데 이 부분은 강의 범위에서 제외하였습니다. (궁금하신 분은 Useful Link의 IBL 관련 내용을 읽어 보십시오.) 여기서는 단순히 Albedo와 AO에 0.03 정도의 낮은 radiance를 곱해서 주변광을 모사하였습니다. 그 주변광을 `Lo`에 곱해서 간단히 Ambient 효과를 더한 색상을 만들어냈습니다.
+    우선 지금까지 ambient term에 대해서는 전혀 이야기하지 않았는데요, ambient도 빼먹으면 안됩니다. 사실 완전한 PBR을 위해서는 ambient에 환경 조명 효과를 더해야 하는데 이 부분은 강의 범위에서 제외하였습니다. (궁금하신 분은 Useful Link의 IBL 관련 내용을 읽어 보십시오.) 여기서는 단순히 Albedo와 AO에 0.03 정도의 낮은 radiance를 곱해서 주변광을 모사하였습니다. 그 주변광을 `Lo`에 더해서 간단히 Ambient 효과를 더한 색상을 만들어냈습니다.
 
     ```glsl
     vec3 ambient = vec3(0.03) * u_albedo * u_ao;
     vec3 color = ambient + Lo;
     ```
 
-    이후 color값을 1.0을 더한 color값으로 나누고 1/2.2 제곱승을 해 주었습니다. 어려운 말로 하자면 이 과정은 Reinhard 연산을 통한 톤 맵핑과 감마 보정 과정입니다. 감마 보정을 설명하려면 HDR을 설명해야 하는데... 시간이 부족하네요 ㅜㅜ 강의 시간에 시간이 남으면 좀 더 설명하도록 하겠습니다. 그냥 `감마 보정`, `톤 맵핑`이라는 단어만 한번 들어 두시고 시간이 되시는 분은 링크의 글을 읽어 보도록 합시다.
+    이후 `color`값을 1.0을 더한 `color`값으로 나누고 1/2.2 제곱승을 해 주었습니다. 어려운 말로 하자면 이 과정은 Reinhard 연산을 통한 톤 맵핑과 감마 보정 과정입니다. 감마 보정을 설명하려면 HDR을 설명해야 하는데... 시간이 부족하네요 ㅜㅜ 강의 시간에 시간이 남으면 좀 더 설명하도록 하겠습니다. 그냥 `감마 보정`, `톤 맵핑`이라는 단어만 한번 들어만 두시고 시간이 되시는 분은 링크의 글을 읽어 보도록 합시다.
 
     ```glsl
     color = color / (color + vec3(1.0));
@@ -250,7 +250,7 @@ $L_o(p,w_o) = \displaystyle\sum_{i=1}^{2} (k_d)\dfrac{c}{\pi} + \dfrac{DFG}{4(w_
 
 `http://localhost:8080/lessons/_current/contents.html`(또는 `http://localhost:8080/lessons/23_PBR/contents.html`)에 접속해 보시면 아래와 같은 화면을 보실 수 있습니다. 일단 지금까지의 렌더링 결과보다는 훨씬 더 그럴싸해 보인다(중요)는 느낌이 드실 겁니다. 당연하죠! 실제 빛과 물체의 상호작용을 훨씬 더 정확한 식으로 모사 했으니까요. 
 
-아래쪽으로 위로 갈수록 metalness가 커지고 왼쪽에서 오른쪽으로 갈수록 roughness가 커집니다. 그래서 낮은 roughness에서는 4개 조명의 하이라이트(정반사되는 빛이죠)가 뚜렷이 보이는 것을 알 수 있습니다. 또한 metal인 주전자는 전체적으로 어두워 보이는데 산란되는 빛이 없이 반사 아니면 흡수되기 때문입니다. 그만큼 에너지의 손실이 일어난 것이죠. 그 중간 단계의 주전자들은 반쯤 금속인(?) 주전자들이라고 할 수 있는데, 물리적으로는 있을 수 없지만 metallic workflow에서는 이러한 효과를 효율적으로 사용합니다.
+아래쪽으로 위로 갈수록 metalness가 커지고 왼쪽에서 오른쪽으로 갈수록 roughness가 커집니다. 그래서 낮은 roughness에서는 4개 조명의 하이라이트(정반사되는 빛이죠)가 뚜렷이 보이는 것을 알 수 있습니다. 또한 metal인 주전자는 전체적으로 어두워 보이는데 산란되는 빛이 없이 반사 아니면 흡수되기 때문입니다. 그만큼 에너지의 손실이 일어난 것이죠. 그 중간 단계의 주전자들은 반쯤 금속인(?) 주전자들이라고 할 수 있는데, 물리적으로는 있을 수 없지만 metallic workflow에서는 이러한 재질을 효율적으로 사용합니다.
 
 <img src="../imgs/23_pbr_result.png">
 
