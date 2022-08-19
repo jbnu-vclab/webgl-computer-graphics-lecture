@@ -19,12 +19,9 @@ WebGL 구현을 위해 JS(자바스크립트)와 GLSL을 사용합니다. HTML�
 그래도 여전히 OpenGL로 내용을 보고 싶으신 분들은 이 Repository와 거의 동일한 구성으로 만들어진 [OpenGL 강의 코드](https://github.com/diskhkme/OpenGL_Lecture_Material)를 보시면 됩니다.
 
 ## How to use
-- 이 Repository를 학습을 위해 사용하는 방법에는 크게 두 가지가 있습니다.
+- 이 Repository를 학습을 위해 사용하려면, `/lessons/` 하위 각 챕터의 README.md 파일을 차례대로 읽으며 해당하는 파일을 보시면 됩니다.
 
-1. 이 Repository를 Clone하고 lessons 폴더 하위의 개별 예제들을 보며 공부하기
-2. 이 Repository의 초기 커밋을 Clone하고 이후 커밋의 변경사항을 따라서 코딩해보기
-
-- 저는 가급적 2번 방법으로 직접 따라서 코드를 직접 작성해 보시기를 추천 드립니다. Github desktop이나 Sourcetree등 툴을 사용하시면 이전 강의내용에서 이번 강의내용 구현까지 어떤 코드들이 변했는지 손쉽게 살펴볼 수 있습니다.
+- 강의의 중후반부부터는 추가 또는 수정한 모든 내역을 설명하고 있지는 않습니다. 직접 코드를 살펴보시거나, 해당하는 커밋 히스토리를 직접 참고 하시길 바랍니다.
 
 - 실제 이 사이트 코드를 사용해 웹브라우저로 WebGL 화면을 보는 방법은 `/lessons/0_Setup/`을 참고하세요.
 
