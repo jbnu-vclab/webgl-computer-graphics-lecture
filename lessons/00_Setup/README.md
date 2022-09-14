@@ -14,7 +14,7 @@
 
 ### Connect and Check
 5. 웹 브라우저(Chrome 또는 FireFox)를 실행하고 `http://localhost:8080/lessons/_current/contents.html` 주소로 접속합니다.
-    * 최종 커밋을 Clone하였다면 `http://localhost:8080/lessons/0_Setup/contents.html`
+    * 최종 커밋을 Clone하였다면 `http://localhost:8080/lessons/00_Setup/contents.html`
 6. 아래와 같이 WebGL Setup Result 글자와 파란색 삼각형이 나오는지 확인합니다.
 
 ![](../imgs/0_setup_result.JPG)
