@@ -48,7 +48,7 @@ JS 쪽으로부터 셰이더 프로그램으로 원하는 값을 그때그때 �
 
     ```js
     var location = gl.getUniformLocation(program, "u_color"); //u_color 변수 위치를 참조
-    gl.uniform4f(location, 0.8, 0.3, 0.8, 1.0); //해당 위치에 0.2, 0.3, 0.8, 1.0 데이터를 전달
+    gl.uniform4f(location, 0.8, 0.3, 0.8, 1.0); //해당 위치에 0.8, 0.3, 0.8, 1.0 데이터를 전달
     ```
 
     이렇게 두 줄로 셰이더의 `u_color`변수에 RAM으로부터 데이터가 전달됩니다. 참 쉽죠?

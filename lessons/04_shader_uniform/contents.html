@@ -87,7 +87,7 @@ function main() {
   // 72번 라인에서 활성화 이후에 비활성화를 하지 않았기 때문에 올바로 동작하는 것
   // gl.useProgram(null); //<--만일 이 라인에서 비활성화를 한다면 어떻게 될까? (null을 인자에 넣으면 buffer 또는 program이 비활성화됨)
   var location = gl.getUniformLocation(program, "u_color"); //u_color 변수 위치(location)를 참조
-  gl.uniform4f(location, 0.8, 0.3, 0.8, 1.0); //해당 location에 0.2, 0.3, 0.8, 1.0 데이터를 전달
+  gl.uniform4f(location, 0.8, 0.3, 0.8, 1.0); //해당 location에 0.8, 0.3, 0.8, 1.0 데이터를 전달
   
   //---Draw Call---//
   gl.drawElements(gl.TRIANGLES, 6, gl.UNSIGNED_SHORT, 0); 
