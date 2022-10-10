@@ -142,8 +142,8 @@
     ```js
     var primitiveType = gl.TRIANGLES;
     var indexcount = 6;
-    var indexoffset = 0
-    gl.drawElements(primitiveType, indexcount, gl.UNSIGNED_SHORT, 0);
+    var indexoffset = 0;
+    gl.drawElements(primitiveType, indexcount, gl.UNSIGNED_SHORT, indexoffset);
     ```
 
     `gl.drawElements()`를 호출해서 지금 바인딩된 것들로(5에서 바인딩한 데이터/프로그램) 화면을 그립니다. 이후 삼각형을 그리기 위해 다시 언바인딩합니다.

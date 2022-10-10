@@ -94,8 +94,8 @@ Abstraction의 첫 단계로 버퍼를 관리하는 클래스를 만들어 보�
     ```js
     var primitiveType = gl.TRIANGLES;
     var indexcount = rectangleIB.getCount(); //<-- 인덱스 몇개를 그릴지 하드코딩하지 않고 IB로부터 얻어옵니다.
-    var indexoffset = 0
-    gl.drawElements(primitiveType, indexcount, gl.UNSIGNED_SHORT, 0);
+    var indexoffset = 0;
+    gl.drawElements(primitiveType, indexcount, gl.UNSIGNED_SHORT, indexoffset);
     ```
 
     이전 예제를 통해 정점 데이터를 읽어오는 부분을 개별 버퍼의 접근이 아닌 VAO를 통한 접근으로 바꿔 두었기 때문에 그 부분은 변화가 없습니다. 드로우콜 호출할때 IndexBuffer 객체의 `getCount()` 메소드로 몇 개의 인덱스 정보를 그릴지를 얻어오는 부분만 수정되었습니다.
