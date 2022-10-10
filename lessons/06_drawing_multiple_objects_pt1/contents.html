@@ -198,7 +198,7 @@ function main() {
     gl.uniform4f(location, red, 0.3, 0.8, 1.0); //해당 위치에 red, 0.3, 0.8, 1.0 데이터를 전달
     var primitiveType = gl.TRIANGLES;
     var indexcount = 6;
-    var indexoffset = 0
+    var indexoffset = 0;
     gl.drawElements(primitiveType, indexcount, gl.UNSIGNED_SHORT, indexoffset);
     //---3. 사각형 관련 state 비활성화. 
     //어차피 스위치는 한번에 하나만 켜지므로 이 부분은 생략하고 삼각형 관련 데이터를 활성화해도 문제는 없지만,

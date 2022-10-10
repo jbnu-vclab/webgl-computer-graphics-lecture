@@ -167,8 +167,8 @@ function main() {
     gl.uniform4f(location, red, 0.3, 0.8, 1.0); //해당 위치에 red, 0.3, 0.8, 1.0 데이터를 전달
     var primitiveType = gl.TRIANGLES;
     var indexcount = rectangleIB.getCount(); //<-- 인덱스 몇개를 그릴지 하드코딩하지 않고 IB로부터 얻어옵니다.
-    var indexoffset = 0
-    gl.drawElements(primitiveType, indexcount, gl.UNSIGNED_SHORT, 0);
+    var indexoffset = 0;
+    gl.drawElements(primitiveType, indexcount, gl.UNSIGNED_SHORT, indexoffset);
     //---3. 사각형 관련 state 비활성화. 
     gl.bindVertexArray(null);
     gl.useProgram(null);
