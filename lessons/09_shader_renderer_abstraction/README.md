@@ -103,8 +103,8 @@ Shader와 관련해서는 우리는 셰이더 소스(코드)를 받아서 컴파
                     
             var primitiveType = gl.TRIANGLES;
             var indexcount = ib.getCount();
-            var indexoffset = 0
-            gl.drawElements(primitiveType, indexcount, gl.UNSIGNED_SHORT, 0);
+            var indexoffset = 0;
+            gl.drawElements(primitiveType, indexcount, gl.UNSIGNED_SHORT, indexoffset);
         }
     }
     ```

@@ -128,8 +128,8 @@ function main() {
     //---2. 사각형 그리기(사각형의 경우 ui에서 받은 uniform도 shader에 보내 반영해 주어야 한다.)
     var primitiveType = gl.TRIANGLES;
     var indexcount = rectangleIB.getCount(); //<-- 인덱스 몇개를 그릴지 하드코딩하지 않고 IB로부터 얻어옵니다.
-    var indexoffset = 0
-    gl.drawElements(primitiveType, indexcount, gl.UNSIGNED_SHORT, 0);
+    var indexoffset = 0;
+    gl.drawElements(primitiveType, indexcount, gl.UNSIGNED_SHORT, indexoffset);
     //---3. 사각형 관련 state 비활성화. 
     gl.bindVertexArray(null);
     gl.useProgram(null);
