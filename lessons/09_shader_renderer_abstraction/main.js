@@ -65,8 +65,8 @@ class Renderer{
                 
         var primitiveType = gl.TRIANGLES;
         var indexcount = ib.getCount();
-        var indexoffset = 0
-        gl.drawElements(primitiveType, indexcount, gl.UNSIGNED_SHORT, 0);
+        var indexoffset = 0;
+        gl.drawElements(primitiveType, indexcount, gl.UNSIGNED_SHORT, indexoffset);
     }
 }
 

@@ -35,7 +35,7 @@ Abstraction의 첫 단계로 버퍼를 관리하는 클래스를 만들어 보�
     }
     ```
     
-    JS는 처음 접한다고 하셔도 C++ 강의를 들으신 분들이기 때문에 위 코드를 보면 바로 이해가 되실겁니다. 버퍼를 생성은 정점 데이터(ex, 좌표)를 GPU에 전달하기 위해 사용되므로 버퍼를 만들고 바인딩해서 `bufferData()` 호출로 데이터를 GPU로 복사하는 것까지 모두 생성자에서 하도록 했습니다.
+    JS는 처음 접한다고 하셔도 C++ 강의를 들으신 분들이기 때문에 위 코드를 보면 바로 이해가 되실겁니다. 버퍼는 정점 데이터(ex, 좌표)를 GPU에 전달하기 위해 사용되므로 버퍼를 만들고 바인딩해서 `bufferData()` 호출로 데이터를 GPU로 복사하는 것까지 모두 생성자에서 하도록 했습니다.
 
     그 외에는 필요한 경우 바인딩/언바인딩을 할 수 있도록 메소드(멤버함수)를 구현해 줬습니다. 이렇게 하면 굳이 내가 지금 바인딩/언바인하고자 하는게 VBO인지 IBO인지 생각해서 `gl.ARRAY_BUFFER`를 사용할지 `gl.ELEMENT_ARRAY_BUFFER`를 사용할지 고민할 필요가 없겠죠? `VertexBuffer` 클래스는 항상 `gl.ARRAY_BUFFER` 관련한 작업만 하게 되어 있으니까요.
     
@@ -94,8 +94,8 @@ Abstraction의 첫 단계로 버퍼를 관리하는 클래스를 만들어 보�
     ```js
     var primitiveType = gl.TRIANGLES;
     var indexcount = rectangleIB.getCount(); //<-- 인덱스 몇개를 그릴지 하드코딩하지 않고 IB로부터 얻어옵니다.
-    var indexoffset = 0
-    gl.drawElements(primitiveType, indexcount, gl.UNSIGNED_SHORT, 0);
+    var indexoffset = 0;
+    gl.drawElements(primitiveType, indexcount, gl.UNSIGNED_SHORT, indexoffset);
     ```
 
     이전 예제를 통해 정점 데이터를 읽어오는 부분을 개별 버퍼의 접근이 아닌 VAO를 통한 접근으로 바꿔 두었기 때문에 그 부분은 변화가 없습니다. 드로우콜 호출할때 IndexBuffer 객체의 `getCount()` 메소드로 몇 개의 인덱스 정보를 그릴지를 얻어오는 부분만 수정되었습니다.
