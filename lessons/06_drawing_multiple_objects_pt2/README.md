@@ -6,7 +6,7 @@ VAO는 말그대로 Vertex Array(정점 배열)를 저장하기 위한 객체입
 
 용어를 먼저 알려드려야 할 것 같네요. 정점의 위치를 저장하는 `gl.ARRAY_BUFFER`에 바인드된 버퍼는 보통 **VBO(Vertex Buffer Object)**, 삼각형의 인덱스를 저장하는 `gl.ELEMENT_ARRAY_BUFFER`에 바인드된 버퍼는 **IBO(Index Buffer Object)** 라고 불립니다. 즉, VAO는 VBO와 IBO에 대한 정보 플러스 데이터 해석 방법를 가지고 있는 것입니다.
 
-GPU에서 일어나는 일들, 그 중 정점 데이터와 관련된 작업과 API을 리마인드를 해 보면 아래와 같습니다. 바로 이전 코드는 좀 길어졌으니 초반부 [2.Shader Attribute](../2_shader_attribute/contents.html)의 코드를 보시는 것도 좋겠습니다.
+GPU에서 일어나는 일들, 그 중 정점 데이터와 관련된 작업과 API을 리마인드를 해 보면 아래와 같습니다. 바로 이전 코드는 좀 길어졌으니 초반부 [2.Shader Attribute](../02_shader_attribute/contents.html)의 코드를 보시는 것도 좋겠습니다.
 
 1. 버퍼 생성(`gl.createBuffer()`)
 2. 버퍼 바인딩(`gl.bindBuffer()`)
