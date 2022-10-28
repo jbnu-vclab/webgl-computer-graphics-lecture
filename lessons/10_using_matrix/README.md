@@ -60,7 +60,7 @@
 
     지난 시간에는 그때 당장 사용할 `SetUniform4f()` 메소드만 구현했는데, 어차피 향후에 다른 것들도 사용하게 될 것이므로 미리 필요한 것들을 구현해 두었습니다.
 
-    [Shader Uniform](../4_shader_uniform/README.md)에서 말씀드렸듯이 셰이더의 uniform 타입에 따라 개별적으로 `gl.uniformXXX()` 함수들이 존재하고, 이에 대한 래퍼들을 구현했다고 보시면 됩니다. 이제는 float, vec3, vec4, mat4, int 타입의 uninform에 값을 설정할 수 있게 되었습니다.
+    [Shader Uniform](../04_shader_uniform/README.md)에서 말씀드렸듯이 셰이더의 uniform 타입에 따라 개별적으로 `gl.uniformXXX()` 함수들이 존재하고, 이에 대한 래퍼들을 구현했다고 보시면 됩니다. 이제는 float, vec3, vec4, mat4, int 타입의 uninform에 값을 설정할 수 있게 되었습니다.
 
 3. [`_current/main.js` 및 `_shader/basicProjectionVertex.js`] 셰이더 수정
 
