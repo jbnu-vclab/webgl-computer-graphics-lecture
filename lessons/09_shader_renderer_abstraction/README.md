@@ -131,7 +131,7 @@ Shader와 관련해서는 우리는 셰이더 소스(코드)를 받아서 컴파
     }
     ```
 
-    Shader 클래스 객체의 setUniform이 올바로 동작하는지 보기 위해서 [7. Buffer Abstraction](../7_buffer_abstraction/contents.html)의 셰이더처럼 사각형의 색상을 uniform으로 입력받아서 그리는 셰이더로 다시 되돌려놓았습니다.
+    Shader 클래스 객체의 setUniform이 올바로 동작하는지 보기 위해서 [7. Buffer Abstraction](../07_buffer_abstraction/contents.html)의 셰이더처럼 사각형의 색상을 uniform으로 입력받아서 그리는 셰이더로 다시 되돌려놓았습니다.
 
 4. Shader 객체 생성
 
@@ -185,7 +185,7 @@ Shader와 관련해서는 우리는 셰이더 소스(코드)를 받아서 컴파
 
 ## Quiz
 
-1. 현재 만들어둔 클래스들을 활용하여 [6. Drawing Multiple Objects - Part 2](../6_drawing_multiple_objects_pt2/contents.html)에서처럼 삼각형 하나와 사각형 하나, 두 개의 물체를 화면에 표시하는 코드를 작성해 보세요.
+1. 현재 만들어둔 클래스들을 활용하여 [6. Drawing Multiple Objects - Part 2](../06_drawing_multiple_objects_pt2/contents.html)에서처럼 삼각형 하나와 사각형 하나, 두 개의 물체를 화면에 표시하는 코드를 작성해 보세요.
 
 ## Useful Links
 
