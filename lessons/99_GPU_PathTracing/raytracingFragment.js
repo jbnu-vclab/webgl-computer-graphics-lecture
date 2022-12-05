@@ -8,8 +8,8 @@ uniform vec2 u_resolution;
 uniform float time;
 
 //--- Parameters
-#define SAMPLES_PER_PIXEL 4
-#define MAX_DEPTH 5
+#define SAMPLES_PER_PIXEL 10
+#define MAX_DEPTH 10
 
 #define PI 3.1415926535
 
@@ -92,16 +92,16 @@ struct camera {
 #define METAL 2
 #define DIELECTRIC 3
 
-vec3 reflect(vec3 v, vec3 n) {
-    return v - 2.0*dot(v,n)*n;
-}
+// vec3 reflect(vec3 v, vec3 n) {
+//     return v - 2.0*dot(v,n)*n;
+// }
 
-vec3 refract(vec3 uv, vec3 n, float etai_over_etat) {
-    float cos_theta = min(dot(-uv, n), 1.0);
-    vec3 r_out_perp =  etai_over_etat * (uv + cos_theta*n);
-    vec3 r_out_parallel = -sqrt(abs(1.0 - dot(r_out_perp,r_out_perp))) * n;
-    return r_out_perp + r_out_parallel;
-}
+// vec3 refract(vec3 uv, vec3 n, float etai_over_etat) {
+//     float cos_theta = min(dot(-uv, n), 1.0);
+//     vec3 r_out_perp =  etai_over_etat * (uv + cos_theta*n);
+//     vec3 r_out_parallel = -sqrt(abs(1.0 - dot(r_out_perp,r_out_perp))) * n;
+//     return r_out_perp + r_out_parallel;
+// }
 
 float schlick(float cosine, float ref_idx)
 {
