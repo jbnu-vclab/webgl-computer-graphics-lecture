@@ -43,7 +43,7 @@ PCF(Percentage Close Filtering)는 계단 현상과 hard shadow 문제를 위와
     import dirShadowFragmentShader from '../_shaders/dirShadowPCFFragment.js'
     ```
 
-2. [`_shaders/dirShadowBiasFragment.js`] 두번째 패스에 사용할 프래그먼트 셰이더
+2. [`_shaders/dirShadowPCFFragment.js`] 두번째 패스에 사용할 프래그먼트 셰이더
 
     ```glsl
     float CalculateShadowFactor(DirectionalLight light)
