@@ -121,7 +121,7 @@ VAO에 대한 설명을 좀 더 보고 싶으시다면 다시한번 [WebGL2 상�
 
 1. VAO를 VBO이후에 바인딩하는 것은 문제가 없습니다. 그런데 IBO이후에 바인딩하면 올바로 동작하지 않습니다. [왜 IBO이후에 바인딩하면 제대로 동작하지 않는지](https://stackoverflow.com/questions/31176226/when-using-ibo-ebo-program-only-works-when-i-call-glbindbuffer-to-bind-the-ibo), [왜 VBO 이후에 바인딩한 것은 상관이 없는지](https://stackoverflow.com/questions/26552642/when-is-what-bound-to-a-vao)까지 이해하시면 완벽합니다.
 
-2. 또한 IBO든 VBO든 VAO와 관련해서 `bufferData()`시점은 아무 상관이 없습니다. 중요한 것은 `bindBuffer()`시점입니다. 예를 들어 예제 코드를 아래와 같이 바꿔도 잘 동작합니다.
+2. VBO는 VAO와 관련해서 `bufferData()`시점이 VAO 언바인딩 이후여도 상관이 없습니다. 반면 IBO는 언바인딩 이전에 `bufferData()`가 이루어져야 합니다. 예를 들어 예제 코드를 아래와 같이 바꿔도 잘 동작합니다.
 
     ```js
     var vao1 = gl.createVertexArray();
