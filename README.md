@@ -1,6 +1,6 @@
-# JBNU WebGL Computer Graphics Lecture Material
+# WebGL Computer Graphics Lecture Material
 
-전북대학교 컴퓨터공학부 "컴퓨터 그래픽스"강의를 위한 Repository입니다. WebGL을 기반으로 합니다.
+"컴퓨터 그래픽스"강의를 위한 Repository입니다. WebGL을 기반으로 합니다.
 
 WebGL 구현을 위해 JS(자바스크립트)와 GLSL을 사용합니다. HTML과 CSS도 밀접하게 관련되어 있으나 이 강의에서는 단순 사용만 할 뿐, 내용을 다루지 않습니다.
 
