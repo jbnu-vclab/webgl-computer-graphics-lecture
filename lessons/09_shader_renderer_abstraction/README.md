@@ -179,7 +179,7 @@ Shader와 관련해서는 우리는 셰이더 소스(코드)를 받아서 컴파
 
 ---
 
-`http://localhost:8080/lessons/_current/contents.html`(또는 `http://localhost:8080/lessons/09_shader_renderer_abstraction/contents.html`)에 접속해 보시면 uniform에 설정한 파란색으로 사각형이 표시되는 것을 보실 수 있습니다.
+`http://localhost:8080/lessons/practice/contents.html`(또는 `http://localhost:8080/lessons/09_shader_renderer_abstraction/contents.html`)에 접속해 보시면 uniform에 설정한 파란색으로 사각형이 표시되는 것을 보실 수 있습니다.
 
 이제 본격적으로 좀 더 재미있는 작업을 할 준비가 된 것 같습니다. 이렇게 사전 준비 작업을 해 놓지 않으면 코드가 너무 번잡스러워져서 굉장히 보기 싫으셨을겁니다. 또한 이러한 작업을 통해 초반에 설명했던 기본적인 WebGL의 동작방식을 다시한번 복습하는 계기가 되었을 것이라고 생각합니다.
 

@@ -177,7 +177,7 @@
 
 ---
 
-`http://localhost:8080/lessons/_current/contents.html`(또는 `http://localhost:8080/lessons/17_specular_term/contents.html`)에 접속해 보시면 아래와 같은 화면을 보실 수 있습니다. 오른쪽에 위치한 `shineMat`을 적용한 주전자는 하이라이트가 좁은 영역에 집중되어 있으며 왼쪽에 위치한 `dullMat`을 적용한 주전자는 넓게 퍼져있는것을 볼 수 있습니다. shininess에 의한 감쇄 효과를 분명하게 볼 수 있습니다.
+`http://localhost:8080/lessons/practice/contents.html`(또는 `http://localhost:8080/lessons/17_specular_term/contents.html`)에 접속해 보시면 아래와 같은 화면을 보실 수 있습니다. 오른쪽에 위치한 `shineMat`을 적용한 주전자는 하이라이트가 좁은 영역에 집중되어 있으며 왼쪽에 위치한 `dullMat`을 적용한 주전자는 넓게 퍼져있는것을 볼 수 있습니다. shininess에 의한 감쇄 효과를 분명하게 볼 수 있습니다.
 
 또한 W,S,A,D로 카메라를 움직여 보시면 하이라이트 위치가 변하는 것을 볼 수 있습니다. specular term은 r와 v의 내적값에 따라 달라지니 당연한 결과겠지요.
 

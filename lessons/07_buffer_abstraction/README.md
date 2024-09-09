@@ -102,7 +102,7 @@ Abstraction의 첫 단계로 버퍼를 관리하는 클래스를 만들어 보�
 
 ---
 
-`http://localhost:8080/lessons/_current/contents.html`(또는 `http://localhost:8080/lessons/07_buffer_abstraction/contents.html`)에 접속해서 우측 상단의 슬라이더를 움직여 보세요. 사각형이 표시되고 색상이 변하면 수정된 코드가 문제없이 동작하는겁니다.
+`http://localhost:8080/lessons/practice/contents.html`(또는 `http://localhost:8080/lessons/07_buffer_abstraction/contents.html`)에 접속해서 우측 상단의 슬라이더를 움직여 보세요. 사각형이 표시되고 색상이 변하면 수정된 코드가 문제없이 동작하는겁니다.
 
 클래스/필드/메소드가 뭐고 생성자가 뭔지 모르는 채로 이 강의를 듣는 분은 없으실 것으로 압니다. (C++ 혹은 JAVA가 선수과목입니다.) 혹시나 그런 분이 계시다면 지금이라도 객체지향 프로그래밍 관련해서 먼저 이해를 하시고 나머지 내용을 보셔야 이해가 될겁니다.
 

@@ -104,7 +104,7 @@
 
 ---
 
-`http://localhost:8080/lessons/_current/contents.html`(또는 `http://localhost:8080/lessons/21_shadow_mapping_add_bias/contents.html`)에 접속해 보시면 아래와 같은 화면을 보실 수 있습니다. 지난번 결과에서 보였던 대부분의 문제들이 해결된 것을 보실 수 있습니다. UI에서 설정 가능한 파라메터들을 조정해 보면서 문제가 없는지 살펴 보세요. 또한 흥미가 있으시다면, 다른 값을들 추가적으로 UI에서 수정 가능하도록 확장해서 결과를 관찰해 보세요.
+`http://localhost:8080/lessons/practice/contents.html`(또는 `http://localhost:8080/lessons/21_shadow_mapping_add_bias/contents.html`)에 접속해 보시면 아래와 같은 화면을 보실 수 있습니다. 지난번 결과에서 보였던 대부분의 문제들이 해결된 것을 보실 수 있습니다. UI에서 설정 가능한 파라메터들을 조정해 보면서 문제가 없는지 살펴 보세요. 또한 흥미가 있으시다면, 다른 값을들 추가적으로 UI에서 수정 가능하도록 확장해서 결과를 관찰해 보세요.
 
 <img src="../imgs/21_shadow_mapping_add_bias_result.jpg">
 

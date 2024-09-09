@@ -321,7 +321,7 @@
 
 ---
 
-`http://localhost:8080/lessons/_current/contents.html`(또는 `http://localhost:8080/lessons/19_depth_map/contents.html`)에 접속해 보시면 아래와 같은 화면을 보실 수 있습니다. UI에 관련한 코드까지 모두 설명드리지는 않았는데 이제는 코드를 찬찬히 보시면 이해하실 수 있을 거라고 믿습니다. 
+`http://localhost:8080/lessons/practice/contents.html`(또는 `http://localhost:8080/lessons/19_depth_map/contents.html`)에 접속해 보시면 아래와 같은 화면을 보실 수 있습니다. UI에 관련한 코드까지 모두 설명드리지는 않았는데 이제는 코드를 찬찬히 보시면 이해하실 수 있을 거라고 믿습니다. 
 
 - Light X/Y/Z direction 슬라이더를 움직이면 directional light의 방향이 변합니다. 방향이 변하면 첫번째 패스에서 뷰 행렬의 EYE 위치가 변하게 되므로 깊이맵도 변하게 됩니다. 지금 눈에 보이는 장면이 조명의 위치에서 [0,0,0]을 바라보는 장면이라는 것을 머리속으로 상상하면서 값을 바꿔 보세요.
 

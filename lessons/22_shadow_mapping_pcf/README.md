@@ -102,7 +102,7 @@ PCF(Percentage Close Filtering)는 계단 현상과 hard shadow 문제를 위와
 
 ---
 
-`http://localhost:8080/lessons/_current/contents.html`(또는 `http://localhost:8080/lessons/22_shadow_mapping_pcf/contents.html`)에 접속해 보시면 아래와 같은 화면을 보실 수 있습니다. 그림자 경계 영역이 부드럽게 표현된 것을 보실 수 있을겁니다. 저는 잘 보이도록 확대해서 스크린샷을 찍어서 그렇지만 적당한 거리에서 보면 확실히 약간 더 자연스러워진 느낌이 들겁니다. 또한 주변 픽셀 9개가 아닌 25개, 49개를 평균내어 사용하면 보다 더 부드러운 결과를 얻을 수 있습니다. 물론 연산에 추가적인 시간 소요가 있겠지요.
+`http://localhost:8080/lessons/practice/contents.html`(또는 `http://localhost:8080/lessons/22_shadow_mapping_pcf/contents.html`)에 접속해 보시면 아래와 같은 화면을 보실 수 있습니다. 그림자 경계 영역이 부드럽게 표현된 것을 보실 수 있을겁니다. 저는 잘 보이도록 확대해서 스크린샷을 찍어서 그렇지만 적당한 거리에서 보면 확실히 약간 더 자연스러워진 느낌이 들겁니다. 또한 주변 픽셀 9개가 아닌 25개, 49개를 평균내어 사용하면 보다 더 부드러운 결과를 얻을 수 있습니다. 물론 연산에 추가적인 시간 소요가 있겠지요.
 
 <img src="../imgs/22_shadow_mapping_pcf_result.jpg">
 

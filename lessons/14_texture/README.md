@@ -233,7 +233,7 @@
 
 ---
 
-`http://localhost:8080/lessons/_current/contents.html`(또는 `http://localhost:8080/lessons/14_texture/contents.html`)에 접속해 보시면 왼쪽 육면체에는 인터넷에서 가져온 그림이, 오른쪽의 주전자에는 resource 폴더에 있는 uv-grid 이미지가 붙여져 나타나는 것을 보실 수 있습니다.
+`http://localhost:8080/lessons/practice/contents.html`(또는 `http://localhost:8080/lessons/14_texture/contents.html`)에 접속해 보시면 왼쪽 육면체에는 인터넷에서 가져온 그림이, 오른쪽의 주전자에는 resource 폴더에 있는 uv-grid 이미지가 붙여져 나타나는 것을 보실 수 있습니다.
 
 <img src="../imgs/14_texture_result.jpg"></img>
 

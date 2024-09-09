@@ -15,7 +15,7 @@
 이전 코드에서 변화된 내용들을 보자면 아래와 같습니다.
 
 ---
-1. [_current/main.js] 클래스 모듈 이동
+1. [practice/main.js] 클래스 모듈 이동
 
     ```js
     import Shader  from '../_classes/Shader.js';
@@ -62,7 +62,7 @@
 
     [Shader Uniform](../04_shader_uniform/README.md)에서 말씀드렸듯이 셰이더의 uniform 타입에 따라 개별적으로 `gl.uniformXXX()` 함수들이 존재하고, 이에 대한 래퍼들을 구현했다고 보시면 됩니다. 이제는 float, vec3, vec4, mat4, int 타입의 uninform에 값을 설정할 수 있게 되었습니다.
 
-3. [`_current/main.js` 및 `_shader/basicProjectionVertex.js`] 셰이더 수정
+3. [`practice/main.js` 및 `_shader/basicProjectionVertex.js`] 셰이더 수정
 
     `main.js`에 보시면 아래와 같이 이번에는 지난 시간과는 다른 셰이더를 사용하고 있습니다. 향후 최종 커밋에서도 모든 설명문서를 문제없이 볼 수 있도록 하기 위해 셰이더들을 조금 많이 만들게 될것 같습니다. 항상 지금 예제가 어떤 셰이더를 사용하고 있는지 잘 확인해 주시면 감사하겠습니다. (다른 방식으로 구조화 되었으면 좋겠다는 개선 의견이 있으시면 언제든 환영합니다.)
     
@@ -88,9 +88,9 @@
 
     `a_position` attribute, 즉 정점의 좌표값에 `u_projection`을 곱하고 있습니다. `u_projection`은 uniform이니 CPU-side(지금까지는 RAM이라고 표현했는데 앞으로는 이렇게 표현하겠습니다.)에서부터 값이 전달될겁니다. 이제 정점 좌표를 그대로 표시하는 것이 아니고 `u_projection` 행렬곱으로 변환해서 표시하게 됩니다.
 
-4. [`_current/contents.html` 및 `_currrent/main.js`] glMatrix 사용
+4. [`practice/contents.html` 및 `_currrent/main.js`] glMatrix 사용
 
-    일단 `_current/contents.html`에서는 아래 라인을 통해 glMatrix 구현을 가져옵니다.
+    일단 `practice/contents.html`에서는 아래 라인을 통해 glMatrix 구현을 가져옵니다.
 
     ```html
     <script src="../../resources/glMatrix/gl-matrix.js"></script>
@@ -146,7 +146,7 @@
 
 ---
 
-`http://localhost:8080/lessons/_current/contents.html`(또는 `http://localhost:8080/lessons/10_using_matrix/contents.html`)에 접속해 보시면 파란색으로 "정사각형"이 표시되는 것을 보실 수 있습니다.
+`http://localhost:8080/lessons/practice/contents.html`(또는 `http://localhost:8080/lessons/10_using_matrix/contents.html`)에 접속해 보시면 파란색으로 "정사각형"이 표시되는 것을 보실 수 있습니다.
 
 좀 더 재미있는 작업을 하기 전에 필요한 행렬 계산 라이브러리의 사용 준비와 아주 간단한 사용 예를 알아보았습니다. uniform으로 행렬을 셰이더에 넘기는 방법을 정확하게 숙지해 두시는 것이 중요할 것으로 생각됩니다. 
 

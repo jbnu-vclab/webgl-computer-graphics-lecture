@@ -244,7 +244,7 @@
 
 ---
 
-`http://localhost:8080/lessons/_current/contents.html`(또는 `http://localhost:8080/lessons/20_shadow_mapping_first_try/contents.html`)에 접속해 보시면 아래와 같은 화면을 보실 수 있습니다. 지난번과 마찬가지로 UI에 관련한 코드까지 모두 설명드리지는 않았는데 이제는 코드를 찬찬히 보시면 모두 이해하실 수 있을 겁니다. 지난번 강의 UI에 더해서, 메인 카메라 이동과 바닥면의 위아래 이동을 할 수 있도록 UI 슬라이더를 추가해 두었습니다.
+`http://localhost:8080/lessons/practice/contents.html`(또는 `http://localhost:8080/lessons/20_shadow_mapping_first_try/contents.html`)에 접속해 보시면 아래와 같은 화면을 보실 수 있습니다. 지난번과 마찬가지로 UI에 관련한 코드까지 모두 설명드리지는 않았는데 이제는 코드를 찬찬히 보시면 모두 이해하실 수 있을 겁니다. 지난번 강의 UI에 더해서, 메인 카메라 이동과 바닥면의 위아래 이동을 할 수 있도록 UI 슬라이더를 추가해 두었습니다.
 
 <img src="../imgs/20_shadow_mapping_first_try_result.jpg">
 

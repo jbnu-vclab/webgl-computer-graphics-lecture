@@ -146,7 +146,7 @@
 
 ---
 
-`http://localhost:8080/lessons/_current/contents.html`(또는 `http://localhost:8080/lessons/13_model_abstraction/contents.html`)에 접속해 보시면 가운데에 빨간색 육면체가 회전하고 있고, 오른쪽에는 주전자가 위치해 있는것을 보실 수 있습니다.
+`http://localhost:8080/lessons/practice/contents.html`(또는 `http://localhost:8080/lessons/13_model_abstraction/contents.html`)에 접속해 보시면 가운데에 빨간색 육면체가 회전하고 있고, 오른쪽에는 주전자가 위치해 있는것을 보실 수 있습니다.
 
 어렵지 않으셨을 것으로 생각됩니다. 다음 강의에서는 이미지를 로딩하고, 그 이미지를 텍스처링 기법을 사용해 물체에 입히는 방법에 대해 알아보겠습니다. 내용을 배우셨으니 입힌다는 것은 그냥 비유적인 표현이고, 색상값을 이미지로부터 샘플링해 픽셀로 그린다는 것은 알고 계시리라 믿습니다.
 

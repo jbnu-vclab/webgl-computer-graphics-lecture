@@ -73,7 +73,7 @@
     * `0`: (offset)첫 데이터를 어디부터 읽을지를 명시합니다. 0~5까지 6개의 인덱스를 모두 사용할 것이므로 0부터 시작하도록 합니다.
 ---
 
-`http://localhost:8080/lessons/_current/contents.html`(또는 `http://localhost:8080/lessons/03_draw_from_index/contents.html`)에 접속해 보시면 화면에 파란색 사각형이 나오는 것을 보실 수 있습니다.
+`http://localhost:8080/lessons/practice/contents.html`(또는 `http://localhost:8080/lessons/03_draw_from_index/contents.html`)에 접속해 보시면 화면에 파란색 사각형이 나오는 것을 보실 수 있습니다.
 
 짝짝짝~ 하고 끝내지 마시고, 한번 생각해 봅시다. 앞서 우리가 정점 좌표(`positions`)를 전달할 때에는 `vertexAttribPointer()`를 사용해 데이터를 어떻게 끊어서 읽을지를 따로 명시해 주었습니다. 인덱스와 관련해서는 왜 그런 API의 호출이 명시적으로 필요하지 않은걸까요? 스스로 생각해 보신 후에 아래글을 펼쳐서 읽어보세요.
 

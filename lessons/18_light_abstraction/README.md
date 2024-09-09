@@ -198,7 +198,7 @@
 
 ---
 
-`http://localhost:8080/lessons/_current/contents.html`(또는 `http://localhost:8080/lessons/18_light_abstraction/contents.html`)에 접속해 보시면 아래와 같은 화면을 보실 수 있습니다. 이제 남은 몇 개의 강의에서는 이와 같이 카메라 시점의 변환을 키보드 & 마우스가 아닌 슬라이더 UI를 통해 수행하게 될겁니다. 카메라의 yaw, pitch, distance를 바꾸어 시점 변경을 해 보시고 shininess가 잘 변경되는지 확인해 보세요.
+`http://localhost:8080/lessons/practice/contents.html`(또는 `http://localhost:8080/lessons/18_light_abstraction/contents.html`)에 접속해 보시면 아래와 같은 화면을 보실 수 있습니다. 이제 남은 몇 개의 강의에서는 이와 같이 카메라 시점의 변환을 키보드 & 마우스가 아닌 슬라이더 UI를 통해 수행하게 될겁니다. 카메라의 yaw, pitch, distance를 바꾸어 시점 변경을 해 보시고 shininess가 잘 변경되는지 확인해 보세요.
 
 <img src="../imgs/18_light_abstraction_result.JPG">
 

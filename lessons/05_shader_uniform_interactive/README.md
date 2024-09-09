@@ -97,7 +97,7 @@
 
 ---
 
-`http://localhost:8080/lessons/_current/contents.html`(또는 `http://localhost:8080/lessons/05_shader_uniform_interactive/contents.html`)에 접속해서 우측 상단의 슬라이더를 움직여 보세요.  사각형의 색상이 변하는 것을 보실 수 있습니다.
+`http://localhost:8080/lessons/practice/contents.html`(또는 `http://localhost:8080/lessons/05_shader_uniform_interactive/contents.html`)에 접속해서 우측 상단의 슬라이더를 움직여 보세요.  사각형의 색상이 변하는 것을 보실 수 있습니다.
 
 이처럼 uniform을 필요한 시점에 업데이트하고 이미지를 새로 그려서 다른 이미지를 보여주는 것이 인터랙티브 프로그램의 기본적인 동작 방식입니다. 나중에 실제로 해볼거지만 여러분이 게임에서 W,A,S,D를 눌러서 캐릭터를 이동하는 것도, 실제로는 uniform에 정의된 카메라의 위치를 키보드를 누를때마다 업데이트하고 화면을 새로 그림으로써 구현되는 것입니다.
 

@@ -22,7 +22,7 @@
     import IndexBuffer from '../_classes/IndexBuffer.js';
     ```
     
-    `main.js`파일을 보셔야 한다는 것을 잊지 마세요. 우선 이전에 구현해둔 VertexBuffer/IndexBuffer를 import하였습니다.
+    `main.js`파일을 보셔야 한다는 것을 잊지 마세요. 우선 이전에 구현해둔 VertexBuffer/IndexBuffer를 import하였습니다. 또한 경로를 보시면 예상하실 수 있듯, 이후 구현할 VertexBuffer/IndexBuffer는 이 레포지토리에서는 `_classes` 폴더 하위에 배치해 두었습니다. 만일 여러분이 직접 구현한 VertexBuffer/IndexBuffer를 사용하고 싶으시다면 다른 폴더(예를들어 `classes`)를 만들고 거기에 구현한 js 파일들을 배치하고 위 import를 `from '../classes/VertexBuffer.js'` 와 같은 형식으로 바꾸어 주시면 되겠죠?
 
 1. VertexArray 클래스 구현
 
@@ -211,7 +211,7 @@
     
 ---
 
-`http://localhost:8080/lessons/_current/contents.html`(또는 `http://localhost:8080/lessons/08_vertex_array_abstraction/contents.html`)에 접속해 보시면 알록달록한 사각형이 보이는 것을 보실 수 있습니다. 왜 색상이 이렇게 표현되는지는 rasterization 과정과 프래그먼트 셰이더에 대해 배우면 알게 되실겁니다.
+`http://localhost:8080/lessons/practice/contents.html`(또는 `http://localhost:8080/lessons/08_vertex_array_abstraction/contents.html`)에 접속해 보시면 알록달록한 사각형이 보이는 것을 보실 수 있습니다. 왜 색상이 이렇게 표현되는지는 rasterization 과정과 프래그먼트 셰이더에 대해 배우면 알게 되실겁니다.
 
 VertexArray에 구현해둔 AddBuffer() 메소드 덕분에 우리는 각 attribute에 해당하는 데이터가 배열에 몇개 있는지를 인자로 넣어주기만 하면 알아서 stride와 offset을 계산해 줍니다. 물론 여기에는 몇 가지 가정(및 한계점)이 들어가 있다는 사실을 알아두셔야 합니다. 우선 떠오르는 것은 아래와 같습니다.
 

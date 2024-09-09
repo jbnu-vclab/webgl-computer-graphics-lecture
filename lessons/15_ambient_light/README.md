@@ -146,7 +146,7 @@
 
 ---
 
-`http://localhost:8080/lessons/_current/contents.html`(또는 `http://localhost:8080/lessons/15_ambient_light/contents.html`)에 접속해 보시면 전체적으로 어두워진 장면을 보실 수 있을겁니다. 육면체에 의해 주전자가 올바로 가려진 것도 보실 수 있습니다.
+`http://localhost:8080/lessons/practice/contents.html`(또는 `http://localhost:8080/lessons/15_ambient_light/contents.html`)에 접속해 보시면 전체적으로 어두워진 장면을 보실 수 있을겁니다. 육면체에 의해 주전자가 올바로 가려진 것도 보실 수 있습니다.
 
 <img src="../imgs/15_ambient_light_result.JPG">
 

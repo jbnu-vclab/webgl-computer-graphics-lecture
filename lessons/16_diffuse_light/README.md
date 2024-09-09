@@ -166,7 +166,7 @@ Diffuse term을 계산하게 되면 물체의 부분부분마다(프래그먼트
 
 ---
 
-`http://localhost:8080/lessons/_current/contents.html`(또는 `http://localhost:8080/lessons/16_diffuse_light/contents.html`)에 접속해 보시면 아래와 같은 화면을 보실 수 있습니다. 육면체와 주전자에 음영이 생긴것을 보세요! 빛이 비추는 부분은 밝게, 빛이 비추지 않는 부분은 어둡게 나타납니다. 훨씬 그럴싸한 화면이 되었죠?
+`http://localhost:8080/lessons/practice/contents.html`(또는 `http://localhost:8080/lessons/16_diffuse_light/contents.html`)에 접속해 보시면 아래와 같은 화면을 보실 수 있습니다. 육면체와 주전자에 음영이 생긴것을 보세요! 빛이 비추는 부분은 밝게, 빛이 비추지 않는 부분은 어둡게 나타납니다. 훨씬 그럴싸한 화면이 되었죠?
 
 <img src="../imgs/16_diffuse_light_ambient_0.2.JPG">
 

@@ -248,7 +248,7 @@ $L_o(p,w_o) = \displaystyle\sum_{i=1}^{2} (k_d)\dfrac{c}{\pi} + \dfrac{DFG}{4(w_
 
 ---
 
-`http://localhost:8080/lessons/_current/contents.html`(또는 `http://localhost:8080/lessons/23_PBR/contents.html`)에 접속해 보시면 아래와 같은 화면을 보실 수 있습니다. 일단 지금까지의 렌더링 결과보다는 훨씬 더 그럴싸해 보인다(중요)는 느낌이 드실 겁니다. 당연하죠! 실제 빛과 물체의 상호작용을 훨씬 더 정확한 식으로 모사 했으니까요. 
+`http://localhost:8080/lessons/practice/contents.html`(또는 `http://localhost:8080/lessons/23_PBR/contents.html`)에 접속해 보시면 아래와 같은 화면을 보실 수 있습니다. 일단 지금까지의 렌더링 결과보다는 훨씬 더 그럴싸해 보인다(중요)는 느낌이 드실 겁니다. 당연하죠! 실제 빛과 물체의 상호작용을 훨씬 더 정확한 식으로 모사 했으니까요. 
 
 아래쪽으로 위로 갈수록 metalness가 커지고 왼쪽에서 오른쪽으로 갈수록 roughness가 커집니다. 그래서 낮은 roughness에서는 4개 조명의 하이라이트(정반사되는 빛이죠)가 뚜렷이 보이는 것을 알 수 있습니다. 또한 metal인 주전자는 전체적으로 어두워 보이는데 산란되는 빛이 없이 반사 아니면 흡수되기 때문입니다. 그만큼 에너지의 손실이 일어난 것이죠. 그 중간 단계의 주전자들은 반쯤 금속인(?) 주전자들이라고 할 수 있는데, 물리적으로는 있을 수 없지만 metallic workflow에서는 이러한 재질을 효율적으로 사용합니다.
 

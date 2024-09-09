@@ -262,7 +262,7 @@ OBJ 파일 포맷은 정점의 위치, 텍스처 좌표, 법선 등을 기록할
 
 ---
 
-`http://localhost:8080/lessons/_current/contents.html`(또는 `http://localhost:8080/lessons/12_model_matrix_and_load_obj/contents.html`)에 접속해 보시면 빨간색 육면체가 회전하고 있는 것을 볼 수 있습니다. 이전과 동일하게 키보드와 마우스로 원하는 곳으로 이동하여 장면을 확인할 수도 있습니다.
+`http://localhost:8080/lessons/practice/contents.html`(또는 `http://localhost:8080/lessons/12_model_matrix_and_load_obj/contents.html`)에 접속해 보시면 빨간색 육면체가 회전하고 있는 것을 볼 수 있습니다. 이전과 동일하게 키보드와 마우스로 원하는 곳으로 이동하여 장면을 확인할 수도 있습니다.
 
 이번 강의에서는 꽤 많은 내용을 배운 것 같습니다. 이론 강의와 연관된 부분은 모델 행렬을 다루는 부분이 있었고요, 이론 강의에서 설명하지는 않았지만 실제로 WebGL 또는 다른 그래픽스 어플리케이션을 개발할 때에 공통적으로 알아두어야 할 사항들인 모델의 로딩과 화면 갱신과 관련한 이슈를 다뤄보았습니다.
 
