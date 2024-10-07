@@ -1,8 +1,12 @@
 # 8. Vertex Array Abstraction
 
-> <span style="color:red">먼저 말씀드릴 것은 지난번까지는 `contents.html`의 `script`태그 안에 모든 코드를 작성해 두었었는데요, 이를 `main.js`파일로 옮기고 해당 모듈을 가져오는 형식으로 수정했다는 것입니다.</span> 이 방법이 코드가 좀 더 깔끔하게 구분는 방식이라고 생각해서 바꾸었는데 혼동이 없으시길 바랍니다. 앞으로는 HTML파일이 아닌 `main.js`파일의 변경사항을 주로 추적하셔야 합니다.
+**먼저 말씀드릴 것은 지난번까지는 `contents.html`의 `script`태그 안에 모든 코드를 작성해 두었었는데, 이번 강의에서부터 메인 함수 부분을 `main.js`파일로 옮기고 해당 모듈을 가져오는 형식으로 수정했다는 것입니다.** 이 방법이 코드를 좀 더 깔끔하게 구조화가 가능하며, 객체지향에 부합하는 방식입니다. 앞으로는 HTML파일이 아닌 `main.js`파일의 변경사항을 주로 추적하셔야 합니다.
 
->또한 `lessons/_classes` 하위에 `IndexBuffer.js`와 `VertexBuffer.js`파일이 생성되었고, 여기에 지난번에 구현했던 VertexBuffer, IndexBuffer의 구현이 들어가 있습니다. 앞으로 추가된 클래스 정의들 모두 이러한 형식으로 해당 폴더에 추가될 것이니 미리 말씀드립니다. 현재 강의 스텝에서는 `main.js`파일에 직접 구현하고, 그 다음 강의에서는 이를 개별 js파일로 옮기는 방식입니다.
+또한 클래스를 구현한 파일은 `lessons/_classes` 하위로 옮겨져 있습니다. 즉, 이전 강의에서 만든 IndexBuffer 클래스와 VertexBuffer 구현 결과는 `lessons/_classes` 폴더의 `IndexBuffer.js`와 `VertexBuffer.js`파일로 옮겨왔습니다. 앞으로 추가될 클래스 정의들 모두 이러한 형식으로 해당 폴더에 추가될 것이니 미리 말씀드립니다. 해당하는 강의 스텝에서는 `main.js`파일에 클래스를 직접 구현하고, 그 다음 강의에서 이를 개별 js파일로 옮기는 방식으로 진행할 예정입니다.
+
+> 구현한 클래스를 main에서 참조하여 사용하는 방법은 아래 0번 내용에 설명되어 있습니다.
+
+---
 
 이번에는 Abstraction의 두 번째 단계로 VAO를 관리하는 클래스를 만들어 보겠습니다. VAO를 생각해보면 VAO를 만들고 바인딩 하기만 하는 아주 단순한 클래스를 만들면 끝날 것 같지만 그렇지 않습니다. 여기에서 우리가 만들 VertexArray 클래스는 데이터를 읽는 법을 알려주는 `gl.enableVertexAttribArray()` 및 `gl.vertexAttribPointer()`까지의 함수를 호출하는 것을 담당하도록 할 것입니다.
 
@@ -22,7 +26,7 @@
     import IndexBuffer from '../_classes/IndexBuffer.js';
     ```
     
-    `main.js`파일을 보셔야 한다는 것을 잊지 마세요. 우선 이전에 구현해둔 VertexBuffer/IndexBuffer를 import하였습니다. 또한 경로를 보시면 예상하실 수 있듯, 이후 구현할 VertexBuffer/IndexBuffer는 이 레포지토리에서는 `_classes` 폴더 하위에 배치해 두었습니다. 만일 여러분이 직접 구현한 VertexBuffer/IndexBuffer를 사용하고 싶으시다면 다른 폴더(예를들어 `classes`)를 만들고 거기에 구현한 js 파일들을 배치하고 위 import를 `from '../classes/VertexBuffer.js'` 와 같은 형식으로 바꾸어 주시면 되겠죠?
+    VertexBuffer/IndexBuffer를 import하였습니다. 이미 구현이 완료된 클래스들은 이 레포지토리에서는 `_classes` 폴더 하위에 위치해 있을 예정입니다. 따라서 import하는 경로는 해당 폴더 상대 경로를 활용 하였습니다. 만일 여러분이 직접 구현한 VertexBuffer/IndexBuffer를 사용하고 싶으시다면 다른 폴더(예를들어 `classes`)를 만들고 거기에 구현한 js 파일들을 배치한 뒤 위 import를 `from '../classes/VertexBuffer.js'` 와 같은 형식으로 바꾸어 주시면 되겠죠?
 
 1. VertexArray 클래스 구현
 
@@ -174,9 +178,9 @@
 
     세 번째 줄은 `rectVA.AddBuffer()` 메소드를 호출합니다. 다시 위로 돌아가 `AddBuffer()`의 구현을 보면서 아래 설명을 보시기를 바랍니다.
 
-    우선 stride의 계산을 보면, `countArray[]`에 들어있는 값들에 각각 4를 곱해서 더하고 있습니다. stride는 다음 정점 정보를 얻기 위해서 이동해야 하는 바이트의 사이즈를 알려줍니다. 우리는 [2, 4]를 넣어줬기 때문에 stride=24가 될겁니다.
+    우선 stride의 계산을 보면, `countArray[]`에 들어있는 값들에 각각 4를 곱해서 더하고 있습니다. stride는 다음 정점 정보를 얻기 위해서 이동해야 하는 바이트의 사이즈를 알려줍니다. 우리는 [2, 4]를 넣어줬기 때문에 stride=24 (4byte * (2+4))가 될겁니다.
 
-    아래로 내려와 for문을 봅시다. 그러면 아래와 같은 순서로 API가 호출된다는 것을 아실 수 있을겁니다. (스스로 검산(?)을 해 보세요.)
+    `AddBuffer()`의 for문을 봅시다. 그러면 아래와 같은 순서로 API가 호출된다는 것을 아실 수 있을겁니다. (스스로 검산(?)을 해 보세요.)
 
     ```js
     // 첫번째 loop
@@ -222,7 +226,7 @@ VertexArray에 구현해둔 AddBuffer() 메소드 덕분에 우리는 각 attrib
 
 ## Quiz
 
-1. 사각형 데이터를 (왜인지 모르겠지만) 아래와 같이 순서를 바꾸어서 전달하고 싶다고 해 봅시다. 이러한 경우 두 번의 호출에서 stride, offset을 어떻게 설정해서 호출해야 할지 생각해 보세요. 
+1. 사각형 데이터를 (왜인지 모르겠지만) 아래와 같이 순서를 바꾸어서 전달하고 싶다고 해 봅시다. 이러한 경우 두 번의 호출에서 stride, offset을 어떻게 설정해서 호출해야 할지 생각해 보세요. 그리고 생각한 대로 동작하는지 확인해 보세요.
 
     ```js
     var rectangleVertices = [ 
