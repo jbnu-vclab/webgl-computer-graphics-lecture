@@ -1,0 +1,105 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>WebGL 4.Shader Uniform</title>
+    <link type="text/css" href="../../resources/webgl-tutorials.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div>WebGL 4.Shader Uniform</div>
+    <canvas id="c"></canvas>
+  </body>
+</html>
+<script src="../../resources/webgl-utils.js"></script>
+<script>
+"use strict";
+
+var vertexShaderSource = `#version 300 es
+layout(location=0) in vec4 a_position; 
+
+uniform vec4 offset;
+
+void main() {
+  gl_Position = a_position + offset;
+}
+`;
+
+var fragmentShaderSource = `#version 300 es
+precision highp float;
+layout(location=0) out vec4 outColor;
+
+uniform vec4 u_color; //CPU로부터 데이터를 받는 또다른 방법인 uniform 변수
+
+void main() {
+  outColor = u_color; //uniform 변수에 저장된 색상으로 출력
+}
+`;
+
+function main() {
+  // Get A WebGL context
+  var canvas = document.querySelector("#c");
+  var gl = canvas.getContext("webgl2");
+  if (!gl) {
+    return;
+  }
+  
+  var positions = [ 
+    -0.5, -0.5, //0번 vertex
+     0.5, -0.5, //1번 vertex
+     0.5,  0.5, //2번 vertex
+	  -0.5,  0.5, //3번 vertex
+  ];
+  
+  var indices = [
+	    0, 1, 2, //0,1,2번 vertex로 이루어진 삼각형
+	    2, 3, 0, //2,3,0번 vertex로 이루어진 삼각형
+  ];
+  
+  //---GPU에 Vertex 데이터 전달---//
+  var positionBuffer = gl.createBuffer(); 
+  gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer); 
+  var floatPositions = new Float32Array(positions); 
+  gl.bufferData(gl.ARRAY_BUFFER, 
+        floatPositions, 
+				gl.STATIC_DRAW); 
+
+  //---GPU에 Index 데이터 전달---//
+  var indexBuffer = gl.createBuffer(); 
+  gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer); 
+  var uintIndices = new Uint16Array(indices);
+  gl.bufferData(gl.ELEMENT_ARRAY_BUFFER,
+        uintIndices, 
+				gl.STATIC_DRAW);
+  
+  //---Shader Program 생성---//
+  var program = webglUtils.createProgramFromSources(gl,
+					[vertexShaderSource, fragmentShaderSource]);
+  gl.useProgram(program); 
+  
+  //---Shader의 Attribute 읽는방법 알려줌---//
+  gl.enableVertexAttribArray(0); 
+  var size = 2;          
+  var type = gl.FLOAT;   
+  var normalize = false; 
+  var stride = 0;        
+  var offset = 0;        
+  gl.vertexAttribPointer(0, size, type, normalize, stride, offset);
+
+  //---Uniform 데이터 전달---//
+  // (주의!) 이 부분도 당연히 Shader가 활성화(binding)된 상태에서 수행해야 함
+  // 72번 라인에서 활성화 이후에 비활성화를 하지 않았기 때문에 올바로 동작하는 것
+  // gl.useProgram(null); //<--만일 이 라인에서 비활성화를 한다면 어떻게 될까? (null을 인자에 넣으면 buffer 또는 program이 비활성화됨)
+  var location = gl.getUniformLocation(program, "u_color"); //u_color 변수 위치(location)를 참조
+  gl.uniform4f(location, 0.8, 0.3, 0.8, 1.0); //해당 location에 0.8, 0.3, 0.8, 1.0 데이터를 전달
+  
+  // prac1. offset uniform 변수를 추가하고, 해당 변수에 0.2, 0.2, 0.2, 0.2 데이터를 전달
+
+  var location2 = gl.getUniformLocation(program, "offset");
+  gl.uniform4f(location2, 0.5, 0.3, 1.0, 0.8);
+
+  //---Draw Call---//
+  gl.drawElements(gl.TRIANGLES, 6, gl.UNSIGNED_SHORT, 0); 
+}
+
+main();
+</script>

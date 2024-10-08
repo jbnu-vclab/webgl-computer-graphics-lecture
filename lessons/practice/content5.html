@@ -1,0 +1,127 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>WebGL 5.Shader Uniform - Interactive</title>
+    <link type="text/css" href="../../resources/webgl-tutorials.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div>WebGL 5.Shader Uniform - Interactive</div>
+    <canvas id="c"></canvas>
+    <div id="uiContainer"> <!-- red color를 조정할 수 있는 ui를 추가 -->
+      <div id="ui">
+        <div id="redColor"></div>
+      </div>
+    </div>
+  </body>
+</html>
+<script src="../../resources/webgl-utils.js"></script>
+<script src="../../resources/webgl-lessons-ui.js"></script> <!-- lessons-ui에서 제공하는 헬퍼를 사용하면 손쉽게 ui 추가 가능 -->
+<script>
+"use strict";
+
+var vertexShaderSource = `#version 300 es
+layout(location=0) in vec4 a_position; 
+uniform vec4 offset;
+
+void main() {
+  gl_Position = a_position + offset;
+}
+`;
+
+var fragmentShaderSource = `#version 300 es
+precision highp float;
+layout(location=0) out vec4 outColor;
+
+uniform vec4 u_color; //CPU로부터 데이터를 받는 또다른 방법인 uniform 변수
+
+void main() {
+  outColor = u_color; //uniform 변수에 저장된 색상으로 출력
+}
+`;
+
+function main() {
+  // Get A WebGL context
+  var canvas = document.querySelector("#c");
+  var gl = canvas.getContext("webgl2");
+  if (!gl) {
+    return;
+  }
+  
+  var positions = [ 
+    -0.5, -0.5, //0번 vertex
+     0.5, -0.5, //1번 vertex
+     0.5,  0.5, //2번 vertex
+	  -0.5,  0.5, //3번 vertex
+  ];
+  
+  var indices = [
+	    0, 1, 2, //0,1,2번 vertex로 이루어진 삼각형
+	    2, 3, 0, //2,3,0번 vertex로 이루어진 삼각형
+  ];
+  
+  //---GPU에 Vertex 데이터 전달---//
+  var positionBuffer = gl.createBuffer(); 
+  gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer); 
+  var floatPositions = new Float32Array(positions); 
+  gl.bufferData(gl.ARRAY_BUFFER, 
+        floatPositions, 
+				gl.STATIC_DRAW); 
+
+  //---GPU에 Index 데이터 전달---//
+  var indexBuffer = gl.createBuffer(); 
+  gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer); 
+  var uintIndices = new Uint16Array(indices);
+  gl.bufferData(gl.ELEMENT_ARRAY_BUFFER,
+        uintIndices, 
+				gl.STATIC_DRAW);
+  
+  //---Shader Program 생성---//
+  var program = webglUtils.createProgramFromSources(gl,
+					[vertexShaderSource, fragmentShaderSource]);
+  gl.useProgram(program); 
+  
+  //---Shader의 Attribute 읽는방법 알려줌---//
+  gl.enableVertexAttribArray(0); 
+  var size = 2;          
+  var type = gl.FLOAT;   
+  var normalize = false; 
+  var stride = 0;        
+  var offset = 0;        
+  gl.vertexAttribPointer(0, size, type, normalize, stride, offset);
+
+  //---UI 셋업
+  var red = 0;
+  //슬라이더가 움직일 때마다, slide에 할당할 콜백함수가 호출됨
+  webglLessonsUI.setupSlider("#redColor", {slide: updateRedColor, min: 0, max: 1, step: 0.1});
+  var location = gl.getUniformLocation(program, "u_color"); //u_color 변수 위치를 참조
+  var location2 = gl.getUniformLocation(program, "offset"); //offset 변수 위치를 참조
+  //---Q1, Q2. drawScene 속 호출 및 첫 로드 시 사각형
+  gl.uniform4f(location, 0, 0.3, 0.8, 1.0);
+  gl.uniform4f(location2, 0, 0, 0, 0);
+  gl.drawElements(gl.TRIANGLES, 6, gl.UNSIGNED_SHORT, 0);
+
+  //slide 콜백함수
+  function updateRedColor(event, ui)
+  {
+    red = ui.value; //slide의 현재값을 red 변수에 저장
+    offset = ui.value; //slide의 현재값을 offset 변수에 저장
+	  drawScene(); //화면을 새로 그림
+  }
+
+  //화면을 새로 그리기 위한 명령어들을 모아 함수로 구현하였음
+  function drawScene()
+  {
+    //화면을 새로 그릴 때마다 배경색을 지움. 
+    gl.clearColor(0, 0, 0, 0);
+    gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT); //<--이 API의 의미는 추후 설명 예정
+
+	  gl.uniform4f(location, red, 0.3, 0.8, 1.0); //해당 위치에 red, 0.3, 0.8, 1.0 데이터를 전달
+    gl.uniform4f(location2, offset, 0, 0, 0); //해당 위치에 offset, 0, 0, 0 데이터를 전달
+    //---Draw Call---//
+    gl.drawElements(gl.TRIANGLES, 6, gl.UNSIGNED_SHORT, 0); 
+  }
+}
+
+main();
+</script>
