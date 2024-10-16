@@ -49,7 +49,7 @@ function main() {
     -0.5, -0.5, //0번 vertex
      0.5, -0.5, //1번 vertex
      0.5,  0.5, //2번 vertex
-	-0.5,  0.5, //3번 vertex
+	  -0.5,  0.5, //3번 vertex
   ];
   
   var indices = [
@@ -100,7 +100,7 @@ function main() {
 						2, //각 데이터는 2개 단위로 이루어져 있다
 						gl.FLOAT, //하나의 데이터는 float 타입이다 (32bit씩 읽어라)
 						false, //데이터의 정규화(normalization)는 필요하지 않다.
-						0, //데이터를 size*sizeof(type)만큼 건너뛰며 읽어라. 즉 2*32bit가 지나면 두 번째 데이터가 나온다
+						8, //데이터를 2 * 4 byte만큼 건너뛰며 읽어라. 즉, 두 번째 데이터는 8 byte 뒤에 나오고, 세 번째 데이터는 12 byte 뒤에 나온다는 것을 알려준 것
 						0); //0번째 byte부터 데이터를 읽기 시작해라
   
   //---Draw Call---//

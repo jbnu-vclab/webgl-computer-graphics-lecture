@@ -277,7 +277,7 @@
 
 ---
 
-`http://localhost:8080/lessons/practice/contents.html`(또는 `http://localhost:8080/lessons/11_input_handling_camera_control/contents.html`)에 접속해 보시면 빨간색 사각형이 보이고, 마우스를 움직이면 카메라를 사용해 둘러볼 수 있으며 W,S,A,D를 사용해 카메라를 움직일 수 있습니다! 이제 드디어 사각형이 3차원 공간상 어느 위치에 놓여있다는 느낌이 드네요.
+`http://localhost:8080/lessons/practice/contents.html`(또는 `http://localhost:8080/lessons/11_input_handling_pt2_camera_control/contents.html`)에 접속해 보시면 빨간색 사각형이 보이고, 마우스를 움직이면 카메라를 사용해 둘러볼 수 있으며 W,S,A,D를 사용해 카메라를 움직일 수 있습니다! 이제 드디어 사각형이 3차원 공간상 어느 위치에 놓여있다는 느낌이 드네요.
 
 멋있고 화려한 게임에서 볼 수 있는 장면과 지금 우리가 그리고 있는 (0,0,0)에 놓여진 사각형과는 어마어마한 차이가 있지만, 3차원 장면을 그리는 원리는 동일합니다. 공간상에 물체를 구성하는 정점의 좌표들과 이를 바라보는 뷰 행렬을 병렬 계산이 가능한 GPU에 전달합니다. 그리고 정점 셰이더 프로그램을 실행하여 뷰(+투영) 행렬과 정점 좌표를 곱해 최종 결과물인 2차원 이미지의 어떤 위치에 정점들이 나타나야 할 지 그 좌표를 계산하는 것입니다.
 

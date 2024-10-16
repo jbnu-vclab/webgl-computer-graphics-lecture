@@ -229,10 +229,10 @@
 
 ---
 
-## [11. Input Handling (Color Change)](./11_input_handling_color_change/README.md)
+## [11. Input Handling (Color Change)](./11_input_handling_pt1_color_change/README.md)
 
 <p align="center">
-<a href="http://localhost:8080/lessons/11_input_handling_color_change/contents.html">
+<a href="http://localhost:8080/lessons/11_input_handling_pt1_color_change/contents.html">
 <img src="./imgs/toc/11_input_handling_color_change.JPG" width="256"></a>
 <p align="center"> 키보드(W,A,S,D) 인터랙션 </p>
 </p>
@@ -243,10 +243,10 @@
     <b><a href="#table-of-contents">↥ back to top</a></b>
 </div>
 
-## [11. Input Handling (Camera Control)](./11_input_handling_camera_control/README.md) 
+## [11. Input Handling (Camera Control)](./11_input_handling_pt2_camera_control/README.md) 
 
 <p align="center">
-<a href="http://localhost:8080/lessons/11_input_handling_camera_control/contents.html">
+<a href="http://localhost:8080/lessons/11_input_handling_pt2_camera_control/contents.html">
 <img src="./imgs/toc/11_input_handling_camera_control.JPG" width="256"></a>
 <p align="center"> 키보드(W,A,S,D) 및 마우스 인터랙션 </p>
 </p>

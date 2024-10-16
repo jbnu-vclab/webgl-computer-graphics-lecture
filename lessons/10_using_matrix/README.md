@@ -175,6 +175,6 @@
 
 ---
 
-[다음 강의](../11_input_handling_color_change/)
+[다음 강의](../11_input_handling_pt1_color_change/)
 
 [목록으로](../)

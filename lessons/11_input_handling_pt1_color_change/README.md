@@ -97,7 +97,7 @@ W,A,S,D로 카메라를 움직이기 위한 구현에 앞서, 우선 간단히 �
 
 ---
 
-`http://localhost:8080/lessons/practice/contents.html`(또는 `http://localhost:8080/lessons/11_input_handling_color_change/contents.html`)에 접속해 보시면 검은색 사각형이 나타나고, D키를 꾹 누르면 빨간색으로 변합니다. A키를 꾹 누르면 다시 검은색으로 변하고, 그 상태에서 W키를 꾹 누르면 초록색으로 변하는 등, 의도하는 대로 색상이 변하는 것을 보실 수 있습니다.
+`http://localhost:8080/lessons/practice/contents.html`(또는 `http://localhost:8080/lessons/11_input_handling_pt1_color_change/contents.html`)에 접속해 보시면 검은색 사각형이 나타나고, D키를 꾹 누르면 빨간색으로 변합니다. A키를 꾹 누르면 다시 검은색으로 변하고, 그 상태에서 W키를 꾹 누르면 초록색으로 변하는 등, 의도하는 대로 색상이 변하는 것을 보실 수 있습니다.
 
 W,A,S,D 키를 사용해 카메라를 움직이기 전에 키보드와 마우스 입력을 탐지하여 콜백함수를 호출하는 간단한 예제를 먼저 살펴 보았습니다. 다음 예제에서는 Camera 클래스를 구현하여 키보드 입력과 마우스 입력에 따른 뷰 행렬 갱신을 통해 카메라 위치를 이동하는 코드를 구현해 봅시다. 이제 진정한 3D의 시작입니다.
 
@@ -119,6 +119,6 @@ W,A,S,D 키를 사용해 카메라를 움직이기 전에 키보드와 마우스
 
 ---
 
-[다음 강의](../11_input_handling_camera_control/)
+[다음 강의](../11_input_handling_pt2_camera_control/)
 
 [목록으로](../)

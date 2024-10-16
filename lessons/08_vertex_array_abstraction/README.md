@@ -226,7 +226,7 @@ VertexArray에 구현해둔 AddBuffer() 메소드 덕분에 우리는 각 attrib
 
 ## Quiz
 
-1. 사각형 데이터를 (왜인지 모르겠지만) 아래와 같이 순서를 바꾸어서 전달하고 싶다고 해 봅시다. 이러한 경우 두 번의 호출에서 stride, offset을 어떻게 설정해서 호출해야 할지 생각해 보세요. 그리고 생각한 대로 동작하는지 확인해 보세요.
+1. 사각형 데이터를 (왜인지 모르겠지만) 아래와 같이 순서를 바꾸어서 전달하고 싶다고 해 봅시다. 이러한 경우 주어진 stride, offset을 활용하는 API로 사각형을 그릴 수 있을까요? 가능/불가능 여부와 그 이유를 생각해 보세요.
 
     ```js
     var rectangleVertices = [ 
@@ -243,7 +243,7 @@ VertexArray에 구현해둔 AddBuffer() 메소드 덕분에 우리는 각 attrib
     ];
     ```
 
-2. 이전 강의의 코드로 돌아가 보시면, `gl.vertexAttribPointer()`의 stride로 0을 전달하고 있었습니다! 이상하죠? 다음 정점 데이터를 읽어오는데 바이트를 0만큼 이동해서 읽어오라는건데 그러면 같은 값만을 계속 읽어올텐데 실제로는 그렇지 않았죠. 그 이유에 대해 [vertexAttribPointer에 대한 레퍼런스 문서](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttribPointer)를 읽어 보세요.
+2. 이 강의에서는 아니지만, 이전 강의의 코드들에서 `gl.vertexAttribPointer()`의 stride로 0을 전달해도 기존처럼 사각형/삼각형이 잘 그려집니다. 이상하죠? 다음 정점 데이터를 읽어오는데 바이트를 0만큼 이동해서 읽어오라는건데 그러면 같은 값만을 계속 읽어올텐데 실제로는 그렇지 않습니다. 그 이유에 대해 [vertexAttribPointer에 대한 레퍼런스 문서](https://developer.mozilla.org/en-US/docs/Web/API/WebGLRenderingContext/vertexAttribPointer)를 읽어 보세요.
 
 
 ## Advanced
