@@ -112,10 +112,10 @@ async function main() {
 
   //--Texture loading
   let checkerTexture = new Texture(gl);
-  checkerTexture.LoadeTextureFromImage(gl,'../../resources/uv-grid.png');
+  checkerTexture.LoadTextureFromImage(gl,'../../resources/uv-grid.png');
 
   let internetTexture = new Texture(gl);
-  internetTexture.LoadeTextureFromImage(gl, 'https://c1.staticflickr.com/9/8873/18598400202_3af67ef38f_q.jpg')
+  internetTexture.LoadTextureFromImage(gl, 'https://c1.staticflickr.com/9/8873/18598400202_3af67ef38f_q.jpg')
   
   //--Light define
   let mainLight = new Light([1.0,1.0,1.0], 0.0, //<--Ambient Data
