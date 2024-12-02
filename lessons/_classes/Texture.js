@@ -21,7 +21,7 @@ export default class Texture {
        
     }
     
-    LoadeTextureFromImage(gl, path)
+    LoadTextureFromImage(gl, path)
     {
         this.image = new Image();
         
